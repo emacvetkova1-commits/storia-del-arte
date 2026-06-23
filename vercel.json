@@ -1,0 +1,5 @@
+{
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "rewrites": [{"source": "/(.*)", "destination": "/storia_arte_1400_1800.html"}]
+}
