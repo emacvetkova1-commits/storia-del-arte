@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Storia dell'Arte 1400-1800</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f6f4ef;--card:#fff;--text:#1a1a1a;--text-mid:#555;--text-light:#8b8b8b;--text-lighter:#b0a8a0;--border:#e5e0d8;--radius:16px;--shadow:0 1px 3px rgba(0,0,0,0.04),0 6px 16px rgba(0,0,0,0.03);--shadow-hover:0 6px 24px rgba(0,0,0,0.07),0 16px 40px rgba(0,0,0,0.04);--transition:0.45s cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:1080px;margin:0 auto;padding:0 24px 40px}
+.view{display:none}.view.active{display:block}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.topbar .tlogo{font-size:1.05rem;font-weight:700;letter-spacing:-0.3px}
+.topbar .tlogo span{color:#c8922c}
+.topbar .tlinks{display:flex;gap:6px}
+.topbar .tlinks button{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;padding:8px 18px;border-radius:100px;border:none;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--text-mid);letter-spacing:0.1px}
+.topbar .tlinks button:hover{background:#f0ede8;color:#111}
+.topbar .tlinks button.active{background:#1a1a1a;color:#fff}
+.hero{position:relative;padding:40px 0 32px;text-align:center;margin-bottom:8px}
+.hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,#d4c9b8,#c8922c,#d4c9b8,transparent);opacity:.5}
+.hero h1{font-size:3.6rem;font-weight:900;letter-spacing:-2px;color:#161616;line-height:1.05}
+.hero h1 .hl{color:#c8922c}
+.hero .sub{font-size:1rem;color:var(--text-light);margin-top:5px;font-weight:400}
+.hero-stats{display:flex;justify-content:center;gap:28px;margin-top:24px}
+.hero-stat{display:flex;flex-direction:column;align-items:center}
+.hero-stat .num{font-size:1.6rem;font-weight:800;color:#1a1a1a;line-height:1;letter-spacing:-0.5px}
+.hero-stat .label{font-size:0.65rem;font-weight:500;text-transform:uppercase;color:var(--text-lighter);letter-spacing:.8px;margin-top:2px}
+.hero-stat-div{width:1px;background:#ddd8d0;align-self:stretch}
+.period-nav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:28px 0 36px}
+.period-nav a{text-decoration:none;font-size:.7rem;font-weight:600;padding:6px 14px;border-radius:100px;background:#fff;color:var(--text-mid);border:1px solid var(--border);transition:all .25s ease;letter-spacing:.1px}
+.period-nav a:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.section{margin-bottom:18px;border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .3s}
+.section:hover{box-shadow:var(--shadow-hover)}
+.section-header{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;position:relative;transition:background .2s}
+.section-header::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pc)}
+.section-header:hover{background:#fbfaf7}
+.section-header .pdot{width:14px;height:14px;border-radius:50%;flex-shrink:0;background:var(--pc);box-shadow:0 0 0 5px color-mix(in srgb,var(--pc)12%,transparent)}
+.section-header .pname{font-size:1.2rem;font-weight:700;letter-spacing:-.3px}
+.section-header .pyears{font-size:.8rem;font-weight:600;color:var(--pc);background:color-mix(in srgb,var(--pc)9%,transparent);padding:3px 14px;border-radius:100px}
+.section-header .pcount{margin-left:auto;font-size:.72rem;color:var(--text-lighter);font-weight:500}
+.section-header .chev{font-size:.7rem;color:#bbb;flex-shrink:0;transition:transform var(--transition);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#efece6}
+.section-header .chev.open{transform:rotate(0deg)}
+.section-header .chev.closed{transform:rotate(-90deg)}
+.section-content{display:grid;grid-template-rows:1fr;transition:grid-template-rows .5s cubic-bezier(.22,1,.36,1),opacity .4s ease;opacity:1}
+.section-content.closed{grid-template-rows:0fr;opacity:0}
+.section-inner{min-height:0;padding:0 24px 20px}
+.section-content.closed .section-inner{padding:0 24px;min-height:0;overflow:hidden}
+.artist-card{margin-top:14px;border-radius:12px;background:#faf9f6;border:1px solid #edeae4;overflow:hidden;transition:border-color .2s}
+.artist-card:hover{border-color:#d5cfc6}
+.artist-header{display:flex;align-items:baseline;gap:10px;padding:14px 18px 8px}
+.artist-header .anum{font-size:.65rem;font-weight:700;color:var(--text-lighter);background:#e8e4dc;padding:2px 10px;border-radius:100px;letter-spacing:.4px;flex-shrink:0}
+.artist-header .aname{font-size:1.15rem;font-weight:650;color:#161616}
+.artist-header .alife{font-size:.85rem;color:var(--text-light);font-weight:400}
+.works-grid{padding:0 18px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.work-cell{border-radius:10px;overflow:hidden;background:#fff;border:1px solid #edeae4;transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s}
+.work-cell:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.work-img-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;background:#f2efe8;display:flex;align-items:center;justify-content:center}
+.work-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.work-cell:hover .work-img-wrap img{transform:scale(1.12)}
+.work-label{padding:6px 9px 8px}
+.work-label .wt{display:block;font-size:.72rem;font-weight:550;color:#262626;line-height:1.3}
+.work-label .wd{display:block;font-size:.62rem;color:var(--text-lighter);margin-top:1px;font-weight:450}
+.footer{margin-top:48px;padding:28px 0 0;border-top:2px solid #e5e0d8;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer .fl{display:flex;flex-direction:column;gap:2px}
+.footer .fl .ft{font-size:1.1rem;font-weight:700;color:#1a1a1a;letter-spacing:-.3px}
+.footer .fl .ft span{color:#c8922c}
+.footer .fl .fs{font-size:.72rem;color:var(--text-lighter)}
+.footer .fc{display:flex;gap:24px}
+.footer .fc .fsn{text-align:center}
+.footer .fc .fsn .fn{font-size:1.2rem;font-weight:700;color:#222;line-height:1}
+.footer .fc .fsn .fl{font-size:.58rem;font-weight:500;text-transform:uppercase;color:var(--text-lighter);letter-spacing:.5px;margin-top:2px}
+.footer .fr{display:flex;align-items:center;gap:8px}
+.footer .fr .top-link{display:inline-flex;align-items:center;gap:4px;text-decoration:none;font-size:.7rem;font-weight:550;color:var(--text-mid);background:#edeae4;padding:7px 14px;border-radius:100px;transition:all .2s}
+.footer .fr .top-link:hover{background:#d5cfc6;transform:translateY(-1px)}
+/* GAME */
+#game-view{background:var(--bg);min-height:100vh}
+.game-container{max-width:800px;margin:0 auto;padding:0 20px 40px}
+.game-hero{padding:24px 0 8px}
+.game-hero h1{font-size:2rem;font-weight:800;letter-spacing:-.5px}
+.game-hero h1 span{color:#c8922c}
+.game-hero p{font-size:.85rem;color:var(--text-light);margin-top:4px}
+.game-level-accordion{margin-top:24px}
+.game-section{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow);margin-bottom:12px}
+.game-section .section-content .section-inner{padding:0 24px 20px}
+.game-section .section-content.closed .section-inner{padding:0 24px!important;min-height:0;overflow:hidden}
+.game-section-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-start-level{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:700;padding:10px 26px;border-radius:100px;border:none;cursor:pointer;background:var(--btn-c,#c8922c);color:#fff;transition:all .3s;letter-spacing:.2px}
+.btn-start-level:hover{transform:translateY(-2px);box-shadow:0 4px 16px color-mix(in srgb,var(--btn-c,#c8922c)30%,transparent)}
+.gs-progress{font-size:.72rem;font-weight:600;color:var(--text-light)}
+.gs-badge{font-size:.6rem;font-weight:700;text-transform:uppercase;padding:3px 12px;border-radius:100px;background:color-mix(in srgb,var(--pc)9%,transparent);color:var(--pc)}
+.game-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 0;margin-bottom:4px}
+.game-hdr .gh-left{display:flex;align-items:center;gap:10px}
+.game-hdr .gh-back{border:none;background:#edeae4;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text-mid);transition:all .2s}
+.game-hdr .gh-back:hover{background:#d5cfc6}
+.game-hdr .gh-title{font-size:1rem;font-weight:700;color:#1a1a1a}
+.game-hdr .gh-progress{font-size:.75rem;color:var(--text-light);font-weight:500}
+.prog-bar-wrap{width:100%;height:4px;background:#e8e4dc;border-radius:4px;overflow:hidden;margin-bottom:20px}
+.prog-bar-fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.card-area{display:flex;flex-direction:column;align-items:center;gap:16px;padding:12px 0}
+.card-counter{font-size:.75rem;color:var(--text-lighter);font-weight:500;letter-spacing:.3px}
+.flip-wrap{width:100%;max-width:480px;perspective:1200px;cursor:pointer}
+.flip-inner{position:relative;width:100%;min-height:280px;max-height:70vh;transition:transform .6s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d}
+.flip-inner.flipped{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;overflow:hidden;backface-visibility:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.flip-front{display:flex;flex-direction:column}
+.flip-front .ff-img{flex:1;overflow:hidden;background:#f2efe8;display:flex;align-items:center;justify-content:center}
+.flip-front .ff-img img{width:100%;height:100%;object-fit:contain;display:block;padding:8px}
+.flip-front .ff-label{padding:10px 14px;background:#fff;border-top:1px solid var(--border)}
+.flip-front .ff-label span{font-size:.72rem;color:var(--text-light);font-weight:500;display:block;text-align:center}
+.flip-back{transform:rotateY(180deg);padding:24px 20px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+.flip-back .fb-period{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.flip-back .fb-title{font-size:1.3rem;font-weight:800;letter-spacing:-.3px;line-height:1.2;margin-bottom:3px}
+.flip-back .fb-artist{font-size:1rem;font-weight:600;color:var(--text-mid);margin-bottom:2px}
+.flip-back .fb-date{font-size:.85rem;color:var(--text-light);margin-bottom:8px}
+.flip-back .fb-detail{font-size:.78rem;color:var(--text-mid);margin-bottom:4px;line-height:1.4}
+.flip-back .fb-detail strong{color:#1a1a1a;font-weight:600}
+.flip-back .fb-loc{font-size:.75rem;color:var(--text-light);margin-top:auto;padding-top:8px;border-top:1px solid var(--border);display:flex;align-items:center;gap:4px}
+.flip-back .fb-hint{font-size:.7rem;color:var(--text-lighter);text-align:center;margin-top:8px}
+.game-actions{display:flex;gap:12px;margin-top:8px;width:100%;max-width:480px}
+.game-actions button{flex:1;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;padding:12px 20px;border-radius:12px;border:none;cursor:pointer;transition:all .2s;letter-spacing:.1px}
+.btn-yes{background:#1a1a1a;color:#fff}
+.btn-yes:hover{background:#333;transform:translateY(-1px)}
+.btn-no{background:#edeae4;color:var(--text-mid)}
+.btn-no:hover{background:#d5cfc6;transform:translateY(-1px)}
+.results-wrap{text-align:center;padding:40px 0}
+.results-wrap .r-icon{font-size:4rem;margin-bottom:12px}
+.results-wrap .r-title{font-size:1.8rem;font-weight:800;letter-spacing:-.5px;margin-bottom:4px}
+.results-wrap .r-sub{font-size:.95rem;color:var(--text-mid);margin-bottom:20px}
+.results-wrap .r-stats{display:flex;justify-content:center;gap:32px;margin-bottom:28px}
+.results-wrap .r-stats .rs{text-align:center}
+.results-wrap .r-stats .rs .rn{font-size:2rem;font-weight:800;line-height:1}
+.results-wrap .r-stats .rs .rl{font-size:.65rem;color:var(--text-lighter);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+.results-wrap .r-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.results-wrap .r-actions button{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;padding:12px 28px;border-radius:12px;border:none;cursor:pointer;transition:all .2s}
+.r-btn-primary{background:#1a1a1a;color:#fff}
+.r-btn-primary:hover{background:#333}
+.r-btn-secondary{background:#edeae4;color:var(--text-mid)}
+.r-btn-secondary:hover{background:#d5cfc6}
+@media(max-width:640px){
+.container{padding:0 16px 30px}.hero h1{font-size:2.2rem}.hero-stats{gap:20px}.hero-stat .num{font-size:1.3rem}
+.section-header{padding:14px 16px;flex-wrap:wrap;gap:8px}.section-header .pcount{margin-left:0;width:100%}
+.section-inner{padding:0 16px 16px}.artist-header{flex-wrap:wrap;padding:12px 14px 6px}.artist-header .aname{font-size:1rem}
+.works-grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:8px;padding:0 14px 14px}
+.level-grid{grid-template-columns:1fr}.flip-wrap{max-width:100%}.game-actions{flex-direction:column}.game-actions button{padding:14px}
+.topbar{padding:12px 16px}.topbar .tlogo{font-size:.9rem}.topbar .tlinks button{font-size:.72rem;padding:6px 12px}
+.footer{flex-direction:column;text-align:center}.footer .fc{gap:16px}
+}
+@media(max-width:380px){.hero h1{font-size:1.6rem}.works-grid{grid-template-columns:repeat(2,1fr)}}
+.section-header:focus-visible{outline:2px solid var(--pc);outline-offset:-2px}
+@media print{body{background:#fff}.section-content{display:block!important;opacity:1!important;grid-template-rows:1fr!important}.chev{display:none}.section{break-inside:avoid;box-shadow:none;border:1px solid #ddd}.period-nav{display:none}.footer .fr{display:none}#game-view{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tlogo">Storia dell&rsquo;<span>Arte</span></div>
+  <div class="tlinks">
+    <button id="btn-timeline" class="active" onclick="switchView('timeline')">Indice</button>
+    <button id="btn-game" onclick="switchView('game')">Gioca</button>
+  </div>
+</div>
+
+<div id="timeline-view" class="view active">
+<div class="container">
+<div class="hero">
+  <h1>Storia dell&rsquo;<span class="hl">Arte</span></h1>
+  <p class="sub">1400 &ndash; 1800 &nbsp;&middot;&nbsp; Dal Primo Rinascimento al Neoclassicismo</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">46</span><span class="label">Artisti</span></div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat"><span class="num">159</span><span class="label">Opere</span></div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat"><span class="num">9</span><span class="label">Periodi</span></div>
+  </div>
+</div>
+<div class="period-nav">
+  <a href="#early-ren" style="border-left-color:#C8922C">Primo Rinascimento</a>
+  <a href="#bridge" style="border-left-color:#D4894A">Verso il Rinascimento Maturo</a>
+  <a href="#high-ren" style="border-left-color:#C0392B">Rinascimento Maturo</a>
+  <a href="#high-manner" style="border-left-color:#8E44AD">Alto Rinascimento / Manierismo</a>
+  <a href="#mannerism" style="border-left-color:#6C3483">Manierismo</a>
+  <a href="#venetian" style="border-left-color:#00897B">Scuola Veneta</a>
+  <a href="#baroque" style="border-left-color:#2E7D32">Barocco</a>
+  <a href="#roccoco" style="border-left-color:#1E6B9E">Rococò e Settecento</a>
+  <a href="#neoclass" style="border-left-color:#5D6D7E">Neoclassicismo</a>
+</div>
+<div class="section" id="early-ren" style="--pc:#C8922C">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Primo Rinascimento</span>
+    <span class="pyears">1400–1490</span>
+    <span class="pcount">13 artisti &middot; 45 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#001</span>
+        <span class="aname">Filippo Brunelleschi</span>
+        <span class="alife">(1377–1446)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__basilica_di_san_lorenzo.jpg" alt="Basilica di San Lorenzo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Basilica di San Lorenzo</span><span class="wd">1421</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__basilica_di_santo_spirito.jpg" alt="Basilica di Santo Spirito" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Basilica di Santo Spirito</span><span class="wd">1444-1487</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__cupola_di_santa_maria_del_fiore.jpg" alt="Cupola di Santa Maria del Fiore" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cupola di Santa Maria del Fiore</span><span class="wd">1420-1436</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__sacrificio_di_isacco.jpg" alt="Sacrificio di Isacco" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sacrificio di Isacco</span><span class="wd">1401</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__sagrestia_vecchia_di_san_lorenzo.jpg" alt="Sagrestia Vecchia di San Lorenzo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sagrestia Vecchia di San Lorenzo</span><span class="wd">1422-1428</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__spedale_degli_innocenti.jpg" alt="Spedale degli Innocenti" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Spedale degli Innocenti</span><span class="wd">1419-1423</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#002</span>
+        <span class="aname">Michelozzo di Bartolomeo</span>
+        <span class="alife">(1396–1472)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELOZZO_DI_BARTOLOMEO/MICHELOZZO_DI_BARTOLOMEO__monumento_brancacci.jpg" alt="Monumento Brancacci" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Monumento Brancacci</span><span class="wd">1425-1427</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELOZZO_DI_BARTOLOMEO/MICHELOZZO_DI_BARTOLOMEO__palazzo_medici.jpg" alt="Palazzo Medici" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Palazzo Medici</span><span class="wd">1444-1464</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#003</span>
+        <span class="aname">Lorenzo Ghiberti</span>
+        <span class="alife">(1378–1455)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LORENZO_GHIBERTI/LORENZO_GHIBERTI__porta_del_paradiso.jpg" alt="Porta del Paradiso" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Porta del Paradiso</span><span class="wd">1425-1452</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LORENZO_GHIBERTI/LORENZO_GHIBERTI__porta_nord_del_battistero.jpg" alt="Porta Nord del Battistero" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Porta Nord del Battistero</span><span class="wd">1403-1424</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#004</span>
+        <span class="aname">Jacopo della Quercia</span>
+        <span class="alife">(1374–1438)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACOPO_DELLA_QUERCIA/JACOPO_DELLA_QUERCIA__monumento_funerario_di_ilaria_del_carretto.jpg" alt="Monumento funerario di Ilaria del Carretto" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Monumento funerario di Ilaria del Carretto</span><span class="wd">1406-1407</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#005</span>
+        <span class="aname">Donatello</span>
+        <span class="alife">(1386–1466)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__cantoria.jpg" alt="Cantoria" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cantoria</span><span class="wd">1433-1438</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__david.jpg" alt="David" loading="lazy"></div>
+          <div class="work-label"><span class="wt">David</span><span class="wd">1435-1440</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__i_profeti_geremia_e_abacuc.jpg" alt="I Profeti Geremia e Abacuc" loading="lazy"></div>
+          <div class="work-label"><span class="wt">I Profeti Geremia e Abacuc</span><span class="wd">1423-1435</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__il_banchetto_di_erode.jpg" alt="Il banchetto di Erode" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il banchetto di Erode</span><span class="wd">1423-1427</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__maddalena_penitente.jpg" alt="Maddalena penitente" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Maddalena penitente</span><span class="wd">1453-1455</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATELLO/DONATELLO__san_giorgio.jpg" alt="San Giorgio" loading="lazy"></div>
+          <div class="work-label"><span class="wt">San Giorgio</span><span class="wd">1417</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#006</span>
+        <span class="aname">Masaccio</span>
+        <span class="alife">(1401–1428)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MASACCIO/MASACCIO__cappella_brancacci.jpg" alt="Cappella Brancacci" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cappella Brancacci</span><span class="wd">1424-1428</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MASACCIO/MASACCIO__polittico_di_pisa.jpg" alt="Polittico di Pisa" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Polittico di Pisa</span><span class="wd">1426</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MASACCIO/MASACCIO__sant'anna_metterza.jpg" alt="Sant'Anna Metterza" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sant'Anna Metterza</span><span class="wd">1424-1425</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MASACCIO/MASACCIO__trinità.jpg" alt="Trinità" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Trinità</span><span class="wd"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#007</span>
+        <span class="aname">Masolino da Panicale</span>
+        <span class="alife">(1383–1447)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MASOLINO_DA_PANICALE/MASOLINO_DA_PANICALE__il_peccato_originale.jpg" alt="Il Peccato originale" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il Peccato originale</span><span class="wd">1424-1425</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#008</span>
+        <span class="aname">Beato Angelico</span>
+        <span class="alife">(1395–1455)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__annunciazione.jpg" alt="Annunciazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Annunciazione</span><span class="wd">1425</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__cristo_deriso.jpg" alt="Cristo deriso" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cristo deriso</span><span class="wd">1437-1447</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__deposizione_di_cristo.jpg" alt="Deposizione di Cristo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Deposizione di Cristo</span><span class="wd">1430</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#009</span>
+        <span class="aname">Leon Battista Alberti</span>
+        <span class="alife">(1404–1472)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__chiesa_di_san_sebastiano.jpg" alt="Chiesa di San Sebastiano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Chiesa di San Sebastiano</span><span class="wd">1460-1470</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__chiesa_di_sant'andrea.jpg" alt="Chiesa di Sant'Andrea" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Chiesa di Sant'Andrea</span><span class="wd">1470</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__facciata_di_santa_maria_novella.jpg" alt="Facciata di Santa Maria Novella" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Facciata di Santa Maria Novella</span><span class="wd">1460</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__palazzo_rucellai.jpg" alt="Palazzo Rucellai" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Palazzo Rucellai</span><span class="wd">1452</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#010</span>
+        <span class="aname">Paolo Uccello</span>
+        <span class="alife">(1397–1475)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PAOLO_UCCELLO/PAOLO_UCCELLO__battaglia_di_san_romano.jpg" alt="Battaglia di San Romano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Battaglia di San Romano</span><span class="wd">1438</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PAOLO_UCCELLO/PAOLO_UCCELLO__monumento_a_giovanni_acuto.jpg" alt="Monumento a Giovanni Acuto" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Monumento a Giovanni Acuto</span><span class="wd">1436</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#011</span>
+        <span class="aname">Piero della Francesca</span>
+        <span class="alife">(1412–1492)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__battesimo_di_cristo.jpg" alt="Battesimo di Cristo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Battesimo di Cristo</span><span class="wd">1443</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__dittico_degli_uffizi.jpg" alt="Dittico degli Uffizi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Dittico degli Uffizi</span><span class="wd">1472-1474</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__flagellazione_di_cristo.jpg" alt="Flagellazione di Cristo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Flagellazione di Cristo</span><span class="wd">circa 1459</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__la_resurrezione_di_cristo.jpg" alt="La resurrezione di Cristo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La resurrezione di Cristo</span><span class="wd">1463-1465</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__sacra_conversazione.jpg" alt="Sacra Conversazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sacra Conversazione</span><span class="wd">1472-1474</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__storie_della_croce.jpg" alt="Storie della Croce" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Storie della Croce</span><span class="wd">1452-1466</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#012</span>
+        <span class="aname">Sandro Botticelli</span>
+        <span class="alife">(1445–1510)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__la_calunnia.jpg" alt="La calunnia" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La calunnia</span><span class="wd">1491-1495</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__la_primavera.jpg" alt="La primavera" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La primavera</span><span class="wd">1478</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__madonna_del_magnificat.jpg" alt="Madonna del Magnificat" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Madonna del Magnificat</span><span class="wd">1483</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__nascita_di_venere.jpg" alt="Nascita di Venere" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Nascita di Venere</span><span class="wd">1484-1485</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#013</span>
+        <span class="aname">Antonello da Messina</span>
+        <span class="alife">(1430–1479)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__ritratto_di_giovane_uomo.jpg" alt="Ritratto di giovane uomo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto di giovane uomo</span><span class="wd">1473</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__san_gerolamo_nello_studio.jpg" alt="San Gerolamo nello Studio" loading="lazy"></div>
+          <div class="work-label"><span class="wt">San Gerolamo nello Studio</span><span class="wd">1475</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__san_sebastiano.jpg" alt="San Sebastiano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">San Sebastiano</span><span class="wd">1478</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__vergine_annunciata.jpg" alt="Vergine Annunciata" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Vergine Annunciata</span><span class="wd">1475</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="bridge" style="--pc:#D4894A">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Verso il Rinascimento Maturo</span>
+    <span class="pyears">1450–1520</span>
+    <span class="pcount">4 artisti &middot; 16 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#014</span>
+        <span class="aname">Andrea Mantegna</span>
+        <span class="alife">(1431–1506)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__camera_degli_sposi.jpg" alt="Camera degli sposi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Camera degli sposi</span><span class="wd">1465-1474</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__cristo_in_pietà.jpg" alt="Cristo In Pietà" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cristo In Pietà</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__orazione_nell'orto.jpg" alt="Orazione nell'Orto" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Orazione nell'Orto</span><span class="wd">1453</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__pala_di_san_zeno.jpg" alt="Pala di San Zeno" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pala di San Zeno</span><span class="wd">1456-1459</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__san_sebastiano.jpg" alt="San Sebastiano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">San Sebastiano</span><span class="wd">1480</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#015</span>
+        <span class="aname">Giovanni Bellini</span>
+        <span class="alife">(1430–1516)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__madonna_con_bambino_e_santi.jpg" alt="Madonna con bambino e santi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Madonna con bambino e santi</span><span class="wd">1488</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__pala_incoronazione.jpg" alt="Pala Incoronazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pala Incoronazione</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__ritratto_del_doge_leonardo_loredan.jpg" alt="Ritratto del doge Leonardo Loredan" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto del doge Leonardo Loredan</span><span class="wd">1501</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#016</span>
+        <span class="aname">Pietro Perugino</span>
+        <span class="alife">(1448–1523)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__consegna_delle_chiavi_a_san_pietro.jpg" alt="Consegna delle chiavi a San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Consegna delle chiavi a San Pietro</span><span class="wd">1481-1483</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__ritratto_di_francesco_delle_opere.jpg" alt="Ritratto di Francesco delle Opere" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto di Francesco delle Opere</span><span class="wd">1494</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__san_sebastiano.jpg" alt="San Sebastiano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">San Sebastiano</span><span class="wd">1490</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#017</span>
+        <span class="aname">Donato Bramante</span>
+        <span class="alife">(1444–1514)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__chiesa_di_santa_maria_presso_san_satiro.jpg" alt="Chiesa di Santa Maria presso San Satiro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Chiesa di Santa Maria presso San Satiro</span><span class="wd">1482-1486</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__cristo_alla_colonna.jpg" alt="Cristo alla colonna" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cristo alla colonna</span><span class="wd">1490</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__la_nuova_basilica_di_san_pietro.jpg" alt="La nuova Basilica di San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La nuova Basilica di San Pietro</span><span class="wd">1506-1626</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__stampa_prevedari.jpg" alt="Stampa Prevedari" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Stampa Prevedari</span><span class="wd">1481</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__tempietto_di_san_pietro_in_montorio.jpg" alt="Tempietto di San Pietro in Montorio" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Tempietto di San Pietro in Montorio</span><span class="wd">1502</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="high-ren" style="--pc:#C0392B">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Rinascimento Maturo</span>
+    <span class="pyears">1490–1520</span>
+    <span class="pcount">4 artisti &middot; 31 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#018</span>
+        <span class="aname">Leonardo da Vinci</span>
+        <span class="alife">(1452–1519)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__adorazione_dei_magi.jpg" alt="Adorazione dei Magi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Adorazione dei Magi</span><span class="wd">1481-1482</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__annunciazione.jpg" alt="Annunciazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Annunciazione</span><span class="wd">1472-1475</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__il_battesimo_di_ges.jpg" alt="Il battesimo di Gesù" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il battesimo di Gesù</span><span class="wd">1475-1478</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__il_cenacolo.jpg" alt="Il cenacolo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il cenacolo</span><span class="wd">1495-1497</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_dama_con_l'ermellino.jpg" alt="La dama con l'ermellino" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La dama con l'ermellino</span><span class="wd">1488-1490</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_gioconda.jpg" alt="La gioconda" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La gioconda</span><span class="wd">1503</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_vergine_delle_rocce.jpg" alt="La Vergine delle rocce" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La Vergine delle rocce</span><span class="wd">1483-1486</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__sant'anna.jpg" alt="Sant'Anna" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sant'Anna</span><span class="wd">1488-1490</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#019</span>
+        <span class="aname">Raffaello Sanzio</span>
+        <span class="alife">(1483–1520)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__deposizione.jpg" alt="Deposizione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Deposizione</span><span class="wd">1507</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__incendio_di_borgo.jpg" alt="Incendio di Borgo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Incendio di Borgo</span><span class="wd">1514</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__la_scuola_d'atene.jpg" alt="La scuola d'Atene" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La scuola d'Atene</span><span class="wd">1509-1510</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__lettera_a_leone_x.jpg" alt="Lettera a Leone X" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Lettera a Leone X</span><span class="wd">1519</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__liberazione_di_san_pietro_dal_carcere.jpg" alt="Liberazione di San Pietro dal carcere" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Liberazione di San Pietro dal carcere</span><span class="wd">1513-1514</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__lo_sposalizio_della_vergine.jpg" alt="Lo sposalizio della Vergine" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Lo sposalizio della Vergine</span><span class="wd">1504</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__madonna_del_prato.jpg" alt="Madonna del prato" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Madonna del prato</span><span class="wd">1506-1508</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__ritratto_di_leone_x_con_due_cardinali.jpg" alt="Ritratto di Leone X con due cardinali" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto di Leone X con due cardinali</span><span class="wd">1518</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__stanze_vaticane.jpg" alt="Stanze Vaticane" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Stanze Vaticane</span><span class="wd">1508-1520</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__trasfigurazione.jpg" alt="Trasfigurazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Trasfigurazione</span><span class="wd">1518-1520</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#020</span>
+        <span class="aname">Michelangelo Buonarroti</span>
+        <span class="alife">(1475–1564)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__basilica_di_san_pietro.jpg" alt="Basilica di San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Basilica di San Pietro</span><span class="wd">1506-1547</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__david.jpg" alt="David" loading="lazy"></div>
+          <div class="work-label"><span class="wt">David</span><span class="wd">1501-1504</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__giudizio_universale.jpg" alt="Giudizio Universale" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Giudizio Universale</span><span class="wd">1536-1541</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__la_piet_di_san_pietro.jpg" alt="La Piet Di San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La Piet Di San Pietro</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__piazza_del_campidoglio.jpg" alt="Piazza del Campidoglio" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Piazza del Campidoglio</span><span class="wd">dal 1539</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__sagrestia_nuova_di_san_lorenzo.jpg" alt="Sagrestia Nuova di San Lorenzo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sagrestia Nuova di San Lorenzo</span><span class="wd">1519-1534</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__tomba_di_giulio_ii.jpg" alt="Tomba di Giulio II" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Tomba di Giulio II</span><span class="wd">1533-1544</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__tondo_doni.jpg" alt="Tondo Doni" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Tondo Doni</span><span class="wd">1504</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__volta_della_cappella_sistina.jpg" alt="Volta della Cappella Sistina" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Volta della Cappella Sistina</span><span class="wd">1508-1512</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#021</span>
+        <span class="aname">Giorgione da Castelfranco</span>
+        <span class="alife">(1478–1510)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__i_tre_filosofi.jpg" alt="I tre filosofi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">I tre filosofi</span><span class="wd">1504</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__la_tempesta.jpg" alt="La tempesta" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La tempesta</span><span class="wd">1502-1503</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__la_venere_dormiente.jpg" alt="La Venere dormiente" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La Venere dormiente</span><span class="wd">1508-1510</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__pala_di_castelfranco.jpg" alt="Pala di Castelfranco" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pala di Castelfranco</span><span class="wd">1504-1505</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="high-manner" style="--pc:#8E44AD">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Alto Rinascimento / Manierismo</span>
+    <span class="pyears">1490–1576</span>
+    <span class="pcount">1 artisti &middot; 5 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#022</span>
+        <span class="aname">Tiziano di Vecellio</span>
+        <span class="alife">(1490–1576)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__carlo_v_a_cavallo.jpg" alt="Carlo V a cavallo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Carlo V a cavallo</span><span class="wd">1548</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__pala_dell'assunta.jpg" alt="Pala dell'Assunta" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pala dell'Assunta</span><span class="wd">1516-1518</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__paolo_iii_farnese_con_i_nipoti.jpg" alt="Paolo III Farnese con i nipoti" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Paolo III Farnese con i nipoti</span><span class="wd">1545-1546</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__piet.jpg" alt="Pietà" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pietà</span><span class="wd">1576</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__venere_di_urbino.jpg" alt="Venere di Urbino" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Venere di Urbino</span><span class="wd">1538</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="mannerism" style="--pc:#6C3483">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Manierismo</span>
+    <span class="pyears">1520–1580</span>
+    <span class="pcount">8 artisti &middot; 16 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#023</span>
+        <span class="aname">Correggio</span>
+        <span class="alife">(1489–1534)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__camera_della_badessa.jpg" alt="Camera della Badessa" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Camera della Badessa</span><span class="wd">1518-1520</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__cupola_del_duomo_di_parma.jpg" alt="Cupola del Duomo di Parma" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cupola del Duomo di Parma</span><span class="wd">1526-1530</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__cupola_san_giovanni_evangelista.jpg" alt="Cupola San Giovanni Evangelista" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cupola San Giovanni Evangelista</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__danae.jpg" alt="Danae" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Danae</span><span class="wd">1530</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__nativit.jpg" alt="Natività" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Natività</span><span class="wd">1522-1530</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#024</span>
+        <span class="aname">Andrea del Sarto</span>
+        <span class="alife">(1486–1530)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_DEL_SARTO/ANDREA_DEL_SARTO__madonna_delle_arpie.jpg" alt="Madonna delle Arpie" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Madonna delle Arpie</span><span class="wd">1517</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANDREA_DEL_SARTO/ANDREA_DEL_SARTO__sposalizio_santa_caterina.jpg" alt="Sposalizio Santa Caterina" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Sposalizio Santa Caterina</span><span class="wd"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#025</span>
+        <span class="aname">Pontormo</span>
+        <span class="alife">(1494–1557)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PONTORMO/PONTORMO__alabardiere.jpg" alt="Alabardiere" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Alabardiere</span><span class="wd">1530</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PONTORMO/PONTORMO__deposizione.jpg" alt="Deposizione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Deposizione</span><span class="wd">1526</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#026</span>
+        <span class="aname">Rosso Fiorentino</span>
+        <span class="alife">(1494–1540)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ROSSO_FIORENTINO/ROSSO_FIORENTINO__deposizione.jpg" alt="Deposizione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Deposizione</span><span class="wd">1521</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ROSSO_FIORENTINO/ROSSO_FIORENTINO__piet.jpg" alt="Pietà" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Pietà</span><span class="wd">1535-1540</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#027</span>
+        <span class="aname">Agnolo Bronzino</span>
+        <span class="alife">(1503–1572)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/AGNOLO_BRONZINO/AGNOLO_BRONZINO__ritratto_di_eleonora_di_toledo_con_il_figlio.jpg" alt="Ritratto di Eleonora di Toledo con il figlio" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto di Eleonora di Toledo con il figlio</span><span class="wd">1545</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#028</span>
+        <span class="aname">Parmigianino</span>
+        <span class="alife">(1503–1540)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PARMIGIANINO/PARMIGIANINO__madonna_dal_collo_lungo.jpg" alt="Madonna dal collo lungo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Madonna dal collo lungo</span><span class="wd">1534-1540</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#029</span>
+        <span class="aname">Benvenuto Cellini</span>
+        <span class="alife">(1500–1571)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BENVENUTO_CELLINI/BENVENUTO_CELLINI__perseo.jpg" alt="Perseo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Perseo</span><span class="wd">1545-1554</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#030</span>
+        <span class="aname">Giorgio Vasari</span>
+        <span class="alife">(1511–1574)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIO_VASARI/GIORGIO_VASARI__giudizio_universale.jpg" alt="Giudizio Universale" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Giudizio Universale</span><span class="wd">1572-1579</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIORGIO_VASARI/GIORGIO_VASARI__gli_uffizi.jpg" alt="Gli Uffizi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Gli Uffizi</span><span class="wd">dal 1560</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="venetian" style="--pc:#00897B">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Scuola Veneta</span>
+    <span class="pyears">1540–1600</span>
+    <span class="pcount">2 artisti &middot; 6 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#031</span>
+        <span class="aname">Jacopo Tintoretto</span>
+        <span class="alife">(1518–1594)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__crocifissione.jpg" alt="Crocifissione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Crocifissione</span><span class="wd">1565</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__miracolo_dello_schiavo.jpg" alt="Miracolo dello schiavo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Miracolo dello schiavo</span><span class="wd">1547-1548</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__ritratto_del_procuratore_jacopo_soranzo.jpg" alt="Ritratto del procuratore Jacopo Soranzo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ritratto del procuratore Jacopo Soranzo</span><span class="wd">1550</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__ultima_cena.jpg" alt="Ultima Cena" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ultima Cena</span><span class="wd">1592-1594</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#032</span>
+        <span class="aname">Paolo Veronese</span>
+        <span class="alife">(1528–1588)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PAOLO_VERONESE/PAOLO_VERONESE__adorazione_dei_magi.jpg" alt="Adorazione dei Magi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Adorazione dei Magi</span><span class="wd">1573</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PAOLO_VERONESE/PAOLO_VERONESE__cena_in_casa_di_levi.jpg" alt="Cena in casa di Levi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Cena in casa di Levi</span><span class="wd">1573</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="baroque" style="--pc:#2E7D32">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Barocco</span>
+    <span class="pyears">1580–1680</span>
+    <span class="pcount">6 artisti &middot; 20 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#033</span>
+        <span class="aname">Annibale Carracci</span>
+        <span class="alife">(1560–1609)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANNIBALE_CARRACCI/ANNIBALE_CARRACCI__galleria_di_palazzo_farnese.jpg" alt="Galleria di Palazzo Farnese" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Galleria di Palazzo Farnese</span><span class="wd">1600</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANNIBALE_CARRACCI/ANNIBALE_CARRACCI__il_mangiafagioli.jpg" alt="Il mangiafagioli" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il mangiafagioli</span><span class="wd">1583-1584</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#034</span>
+        <span class="aname">Caravaggio</span>
+        <span class="alife">(1571–1610)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__bacco.jpg" alt="Bacco" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Bacco</span><span class="wd">1596-1597</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__canestra_di_frutta.jpg" alt="Canestra di frutta" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Canestra di frutta</span><span class="wd">1597-1601</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__crocifissione_di_san_pietro.jpg" alt="Crocifissione di San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Crocifissione di San Pietro</span><span class="wd">1600-1601</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__morte_della_vergine.jpg" alt="Morte della Vergine" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Morte della Vergine</span><span class="wd">1605-1606</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__testa_di_medusa.jpg" alt="Testa di Medusa" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Testa di Medusa</span><span class="wd">1596-1598</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__vocazione_di_san_matteo.jpg" alt="Vocazione di San Matteo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Vocazione di San Matteo</span><span class="wd">1599-1600</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#035</span>
+        <span class="aname">Gian Lorenzo Bernini</span>
+        <span class="alife">(1598–1680)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BERNINI/BERNINI__apollo_e_dafne.jpg" alt="Apollo e Dafne" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Apollo e Dafne</span><span class="wd">1622-1625</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BERNINI/BERNINI__baldacchino_di_san_pietro.jpg" alt="Baldacchino di San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Baldacchino di San Pietro</span><span class="wd">1624-1633</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BERNINI/BERNINI__colonnato_di_piazza_san_pietro.jpg" alt="Colonnato di piazza San Pietro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Colonnato di piazza San Pietro</span><span class="wd">1657-1665</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BERNINI/BERNINI__estasi_di_santa_teresa.jpg" alt="Estasi di Santa Teresa" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Estasi di Santa Teresa</span><span class="wd">1646-1651</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/BERNINI/BERNINI__ratto_di_proserpina.jpg" alt="Ratto di Proserpina" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ratto di Proserpina</span><span class="wd">1621-1622</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#036</span>
+        <span class="aname">Pietro da Cortona</span>
+        <span class="alife">(1596–1669)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_DA_CORTONA/PIETRO_DA_CORTONA__trionfo_della_divina_provvidenza.jpg" alt="Trionfo della Divina Provvidenza" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Trionfo della Divina Provvidenza</span><span class="wd">1632-1639</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#037</span>
+        <span class="aname">Guido Reni</span>
+        <span class="alife">(1575–1642)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__atalanta_e_ippomene.jpg" alt="Atalanta e Ippomene" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Atalanta e Ippomene</span><span class="wd">1619</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__nesso_e_deianira.jpg" alt="Nesso e Deianira" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Nesso e Deianira</span><span class="wd">1621</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__strage_degli_innocenti.jpg" alt="Strage degli Innocenti" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Strage degli Innocenti</span><span class="wd">1611</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#038</span>
+        <span class="aname">Guercino</span>
+        <span class="alife">(1591–1666)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUERCINO/GUERCINO__angelo_appare_ad_agar_e_ismaele.jpg" alt="L'angelo appare ad Agar e Ismaele" loading="lazy"></div>
+          <div class="work-label"><span class="wt">L'angelo appare ad Agar e Ismaele</span><span class="wd">1652</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUERCINO/GUERCINO__annunciazione.jpg" alt="Annunciazione" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Annunciazione</span><span class="wd">1648</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GUERCINO/GUERCINO__ritorno_del_figliol_prodigo.jpg" alt="Il ritorno del figliol prodigo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il ritorno del figliol prodigo</span><span class="wd">1619</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="roccoco" style="--pc:#1E6B9E">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Rococò e Settecento</span>
+    <span class="pyears">1700–1780</span>
+    <span class="pcount">5 artisti &middot; 10 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#039</span>
+        <span class="aname">Giambattista Tiepolo</span>
+        <span class="alife">(1696–1770)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__il_banchetto_di_cleopatra.jpg" alt="Il Banchetto Di Cleopatra" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il Banchetto Di Cleopatra</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__il_sacrificio_di_ifigenia.jpg" alt="Il sacrificio di Ifigenia" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il sacrificio di Ifigenia</span><span class="wd">1757</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__residenza_di_wuerzburg.jpg" alt="Residenza Di Wuerzburg" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Residenza Di Wuerzburg</span><span class="wd"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#040</span>
+        <span class="aname">Pietro Longhi</span>
+        <span class="alife">(1702–1785)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_LONGHI/PIETRO_LONGHI__lezione_di_danza.jpg" alt="Lezione di danza" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Lezione di danza</span><span class="wd">1741</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/PIETRO_LONGHI/PIETRO_LONGHI__lo_speziale.jpg" alt="Lo speziale" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Lo speziale</span><span class="wd">1752</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#041</span>
+        <span class="aname">Antonio Canaletto</span>
+        <span class="alife">(1697–1768)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANALETTO/ANTONIO_CANALETTO__eton_college.jpg" alt="Eton College" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Eton College</span><span class="wd">1754</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANALETTO/ANTONIO_CANALETTO__il_canal_grande_verso_est.jpg" alt="Il Canal Grande verso Est" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il Canal Grande verso Est</span><span class="wd">1727</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#042</span>
+        <span class="aname">Francesco Guardi</span>
+        <span class="alife">(1712–1793)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/FRANCESCO_GUARDI/FRANCESCO_GUARDI__laguna_vista_da_murano.jpg" alt="Laguna vista da Murano" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Laguna vista da Murano</span><span class="wd">1780-1790</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/FRANCESCO_GUARDI/FRANCESCO_GUARDI__molo_con_la_libreria_verso_la_salute.jpg" alt="Molo Con La Libreria Verso La Salute" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Molo Con La Libreria Verso La Salute</span><span class="wd"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#043</span>
+        <span class="aname">Giovanni Battista Piranesi</span>
+        <span class="alife">(1720–1778)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/GIOVANNI_BATTISTA_PIRANESI/GIOVANNI_BATTISTA_PIRANESI__santa_maria_del_priorato.jpg" alt="Santa Maria del Priorato" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Santa Maria del Priorato</span><span class="wd">dal 1764</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+<div class="section" id="neoclass" style="--pc:#5D6D7E">
+  <div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">
+    <span class="pdot"></span><span class="pname">Neoclassicismo</span>
+    <span class="pyears">1770–1800</span>
+    <span class="pcount">3 artisti &middot; 10 opere</span>
+    <span class="chev open">&#9660;</span>
+  </div>
+  <div class="section-content"><div class="section-inner">
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#044</span>
+        <span class="aname">Johann Heinrich Füssli</span>
+        <span class="alife">(1741–1825)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JOHANN_HEINRICH_FUSSLI/JOHANN_HEINRICH_FUSSLI__l_incubo.jpg" alt="L Incubo" loading="lazy"></div>
+          <div class="work-label"><span class="wt">L Incubo</span><span class="wd"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#045</span>
+        <span class="aname">Antonio Canova</span>
+        <span class="alife">(1757–1822)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__adone_e_venere.jpg" alt="Adone e Venere" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Adone e Venere</span><span class="wd">1789-1794</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__amore_e_psiche.jpg" alt="Amore e Psiche" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Amore e Psiche</span><span class="wd">1788-1793</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__ebe.jpg" alt="Ebe" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Ebe</span><span class="wd">1800-1805</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__le_grazie.jpg" alt="Le Grazie" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Le Grazie</span><span class="wd">1814-1817</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__monumento_funebre_a_maria_cristina_d_austria.jpg" alt="Monumento Funebre A Maria Cristina D Austria" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Monumento Funebre A Maria Cristina D Austria</span><span class="wd"></span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__paolina_borghese.jpg" alt="Paolina Borghese" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Paolina Borghese</span><span class="wd">1804-1808</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__teseo_sul_minotauro.jpg" alt="Teseo sul Minotauro" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Teseo sul Minotauro</span><span class="wd">1781-1783</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="artist-card">
+      <div class="artist-header">
+        <span class="anum">#046</span>
+        <span class="aname">Jacques-Louis David</span>
+        <span class="alife">(1748–1825)</span>
+      </div>
+      <div class="works-grid">
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACQUES-LOUIS_DAVID/JACQUES-LOUIS_DAVID__il_giuramento_degli_orazi.jpg" alt="Il Giuramento degli Orazi" loading="lazy"></div>
+          <div class="work-label"><span class="wt">Il Giuramento degli Orazi</span><span class="wd">1784</span></div>
+        </div>
+        <div class="work-cell">
+          <div class="work-img-wrap"><img src="ARTWORKS_1400_1800/JACQUES-LOUIS_DAVID/JACQUES-LOUIS_DAVID__la_morte_di_marat.jpg" alt="La morte di Marat" loading="lazy"></div>
+          <div class="work-label"><span class="wt">La morte di Marat</span><span class="wd">1793</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="footer">
+  <div class="fl"><div class="ft">Storia dell&rsquo;<span>Arte</span></div><div class="fs">dal 1400 al 1800 &middot; 46 artisti &middot; 159 opere &middot; 9 periodi</div></div>
+  <div class="fc">
+    <div class="fsn"><span class="fn">46</span><span class="fl">Artisti</span></div>
+    <div class="fsn"><span class="fn">159</span><span class="fl">Opere</span></div>
+    <div class="fsn"><span class="fn">9</span><span class="fl">Periodi</span></div>
+  </div>
+  <div class="fr"><a href="#" class="top-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&uarr; Torna su</a></div>
+</div>
+</div>
+</div>
+
+<div id="game-view" class="view">
+<div class="game-container">
+<div class="game-hero" id="game-hero-select">
+  <h1>Gioca &amp; <span>Impara</span></h1>
+  <p>Scegli un periodo per iniziare le flashcard</p>
+</div>
+<div id="game-levels" class="game-level-accordion"></div>
+
+<div id="game-play" style="display:none">
+  <div class="game-hdr">
+    <div class="gh-left">
+      <button class="gh-back" onclick="backToLevels()">&larr;</button>
+      <span class="gh-title" id="game-level-title"></span>
+    </div>
+    <span class="gh-progress" id="game-progress-text"></span>
+  </div>
+  <div class="prog-bar-wrap"><div class="prog-bar-fill" id="game-progress-bar" style="width:0%"></div></div>
+  <div class="card-area">
+    <div class="card-counter" id="game-counter"></div>
+    <div class="flip-wrap" id="flip-wrap" onclick="flipCard()">
+      <div class="flip-inner" id="flip-inner">
+        <div class="flip-front">
+          <div class="ff-img" id="card-img"></div>
+          <div class="ff-label"><span>Tocca per scoprire</span></div>
+        </div>
+        <div class="flip-back" id="card-back">
+          <div class="fb-period" id="fb-period" style="font-weight:700"></div>
+          <div class="fb-title" id="fb-title"></div>
+          <div class="fb-artist" id="fb-artist"></div>
+          <div class="fb-date" id="fb-date"></div>
+          <div class="fb-detail" id="fb-detail"></div>
+          <div class="fb-loc" id="fb-loc"></div>
+          <div class="fb-hint">&#9665;&#9655; Tocca per girare</div>
+        </div>
+      </div>
+    </div>
+    <div class="game-actions" id="game-actions">
+      <button class="btn-yes" onclick="answerCard(true)">&#10003; Lo sapevo</button>
+      <button class="btn-no" onclick="answerCard(false)">&#8634; Ripassa</button>
+    </div>
+  </div>
+</div>
+
+<div id="game-results" style="display:none">
+  <div class="results-wrap">
+    <div class="r-icon">&#127942;</div>
+    <div class="r-title">Completato!</div>
+    <div class="r-sub" id="results-sub"></div>
+    <div class="r-stats">
+      <div class="rs"><span class="rn" id="res-correct">0</span><span class="rl">Conosciute</span></div>
+      <div class="rs"><span class="rn" id="res-total">0</span><span class="rl">Totali</span></div>
+      <div class="rs"><span class="rn" id="res-pct">0%</span><span class="rl">Punteggio</span></div>
+    </div>
+    <div class="r-actions">
+      <button class="r-btn-primary" onclick="retryLevel()">Rigioca</button>
+      <button class="r-btn-secondary" onclick="backToLevels()">Altro periodo</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+var ARTWORKS = [{"id": 0, "title": "Basilica di San Lorenzo", "date": "1421", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo del Bargello, Firenze", "type": "scultura", "description": "Bassorilievo in bronzo per il concorso della Porta Nord del Battistero. Rappresenta il sacrificio di Abramo con un forte dinamismo.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__basilica_di_san_lorenzo.jpg", "artist_num": 1}, {"id": 1, "title": "Basilica di Santo Spirito", "date": "1444-1487", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Firenze", "type": "architettura", "description": "La prima grande cupola rinascimentale, autoportante in laterizio. Capolavoro di ingegneria con sistema a doppia calotta e spinapesce.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__basilica_di_santo_spirito.jpg", "artist_num": 1}, {"id": 2, "title": "Cupola di Santa Maria del Fiore", "date": "1420-1436", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Firenze", "type": "architettura", "description": "Primo edificio civile rinascimentale. Caratterizzato da portico ad archi su colonne e finestre inquadrate da lesene.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__cupola_di_santa_maria_del_fiore.jpg", "artist_num": 1}, {"id": 3, "title": "Sacrificio di Isacco", "date": "1401", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Basilica di San Lorenzo, Firenze", "type": "architettura", "description": "Prima chiesa rinascimentale a pianta centrale. Cupola su pennacchi e cappella con decorazione in pietra serena.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__sacrificio_di_isacco.jpg", "artist_num": 1}, {"id": 4, "title": "Sagrestia Vecchia di San Lorenzo", "date": "1422-1428", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Basilica di San Lorenzo, Firenze", "type": "architettura", "description": "Progetto di chiesa a croce latina con navate laterali e cappelle. Commissionata da Giovanni di Bicci de’ Medici.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__sagrestia_vecchia_di_san_lorenzo.jpg", "artist_num": 1}, {"id": 5, "title": "Spedale degli Innocenti", "date": "1419-1423", "artist": "Filippo Brunelleschi", "artist_folder": "BRUNELLESCHI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Basilica di Santo Spirito, Firenze", "type": "architettura", "description": "Pianta a croce latina con 38 cappelle semicircolari. Interno con colonne corinzie e archi a tutto sesto.", "image": "ARTWORKS_1400_1800/BRUNELLESCHI/BRUNELLESCHI__spedale_degli_innocenti.jpg", "artist_num": 1}, {"id": 6, "title": "Monumento Brancacci", "date": "1425-1427", "artist": "Michelozzo di Bartolomeo", "artist_folder": "MICHELOZZO_DI_BARTOLOMEO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Sant’Agostino, San Gimignano", "type": "scultura", "description": "Monumento funebre in marmo con ricca decorazione scultorea. Uno dei primi esempi di tomba umanistica.", "image": "ARTWORKS_1400_1800/MICHELOZZO_DI_BARTOLOMEO/MICHELOZZO_DI_BARTOLOMEO__monumento_brancacci.jpg", "artist_num": 2}, {"id": 7, "title": "Palazzo Medici", "date": "1444-1464", "artist": "Michelozzo di Bartolomeo", "artist_folder": "MICHELOZZO_DI_BARTOLOMEO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Via Larga, Firenze", "type": "architettura", "description": "Palazzo rinascimentale con facciata a bugnato graduale e cortile interno con colonne corinzie. Modello per i palazzi fiorentini.", "image": "ARTWORKS_1400_1800/MICHELOZZO_DI_BARTOLOMEO/MICHELOZZO_DI_BARTOLOMEO__palazzo_medici.jpg", "artist_num": 2}, {"id": 8, "title": "Porta del Paradiso", "date": "1425-1452", "artist": "Lorenzo Ghiberti", "artist_folder": "LORENZO_GHIBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Battistero di San Giovanni, Firenze", "type": "scultura", "description": "Porta in bronzo con 28 formelle quadrilobe. Stile gotico fiorito con scene del Nuovo Testamento e figure di santi.", "image": "ARTWORKS_1400_1800/LORENZO_GHIBERTI/LORENZO_GHIBERTI__porta_del_paradiso.jpg", "artist_num": 3}, {"id": 9, "title": "Porta Nord del Battistero", "date": "1403-1424", "artist": "Lorenzo Ghiberti", "artist_folder": "LORENZO_GHIBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Battistero di San Giovanni, Firenze", "type": "scultura", "description": "Dieci formelle dorate con scene dell’Antico Testamento. Michelangelo la definì «Porta del Paradiso» per la sua bellezza.", "image": "ARTWORKS_1400_1800/LORENZO_GHIBERTI/LORENZO_GHIBERTI__porta_nord_del_battistero.jpg", "artist_num": 3}, {"id": 10, "title": "Monumento funerario di Ilaria del Carretto", "date": "1406-1407", "artist": "Jacopo della Quercia", "artist_folder": "JACOPO_DELLA_QUERCIA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Cattedrale di San Martino, Lucca", "type": "scultura", "description": "Monumento funebre in marmo con la figura giacente di Ilaria. Il cane ai piedi simboleggia la fedeltà coniugale.", "image": "ARTWORKS_1400_1800/JACOPO_DELLA_QUERCIA/JACOPO_DELLA_QUERCIA__monumento_funerario_di_ilaria_del_carretto.jpg", "artist_num": 4}, {"id": 11, "title": "Cantoria", "date": "1433-1438", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo del Bargello, Firenze", "type": "scultura", "description": "San Giorgio in marmore, commissionato dall’Arte dei Corazzai. Sguardo fiero e posa stabile, simbolo dell’ideale cavalleresco.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__cantoria.jpg", "artist_num": 5}, {"id": 12, "title": "David", "date": "1435-1440", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo dell’Opera del Duomo, Firenze", "type": "scultura", "description": "Profeti in marmo con panneggi mossi e volti espressivi. Abacuc è detto «lo Zuccone» per la calvizie.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__david.jpg", "artist_num": 5}, {"id": 13, "title": "I Profeti Geremia e Abacuc", "date": "1423-1435", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Battistero di San Giovanni, Siena", "type": "scultura", "description": "Rilievo in bronzo con prospettiva complessa. La scena del banchetto di Erode mostra architettura rinascimentale e psicologia dei personaggi.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__i_profeti_geremia_e_abacuc.jpg", "artist_num": 5}, {"id": 14, "title": "Il banchetto di Erode", "date": "1423-1427", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo dell’Opera del Duomo, Firenze", "type": "scultura", "description": "Cantoria in marmo con fregio di putti danzanti. Rinnovamento dell’arte classica con vivace movimento e ritmo musicale.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__il_banchetto_di_erode.jpg", "artist_num": 5}, {"id": 15, "title": "Maddalena penitente", "date": "1453-1455", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo del Bargello, Firenze", "type": "scultura", "description": "Primo nudo a tutto tondo dal mondo antico. David in bronzo, giovane vittorioso con armonia delle proporzioni.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__maddalena_penitente.jpg", "artist_num": 5}, {"id": 16, "title": "San Giorgio", "date": "1417", "artist": "Donatello", "artist_folder": "DONATELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo dell’Opera del Duomo, Firenze", "type": "scultura", "description": "Maddalena in legno intagliato, figura emaciata e ascetica. Intensa spiritualità tardogotica.", "image": "ARTWORKS_1400_1800/DONATELLO/DONATELLO__san_giorgio.jpg", "artist_num": 5}, {"id": 17, "title": "Cappella Brancacci", "date": "1424-1428", "artist": "Masaccio", "artist_folder": "MASACCIO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Sant’Anna con la Vergine e il Bambino. Primo esempio di prospettiva scientifica nella pittura.", "image": "ARTWORKS_1400_1800/MASACCIO/MASACCIO__cappella_brancacci.jpg", "artist_num": 6}, {"id": 18, "title": "Polittico di Pisa", "date": "1426", "artist": "Masaccio", "artist_folder": "MASACCIO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo Nazionale di Capodimonte, Napoli", "type": "pittura", "description": "Polittico per la chiesa del Carmine a Pisa. Scene con figure monumentali e prospettiva rinascimentale.", "image": "ARTWORKS_1400_1800/MASACCIO/MASACCIO__polittico_di_pisa.jpg", "artist_num": 6}, {"id": 19, "title": "Sant'Anna Metterza", "date": "1424-1425", "artist": "Masaccio", "artist_folder": "MASACCIO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Chiesa di Santa Maria del Carmine, Firenze", "type": "affresco", "description": "Ciclo di affreschi con scene della vita di San Pietro. Il Tributo e la Cacciata dal Paradiso sono capolavori di prospettiva e realismo.", "image": "ARTWORKS_1400_1800/MASACCIO/MASACCIO__sant'anna_metterza.jpg", "artist_num": 6}, {"id": 20, "title": "Trinità", "date": "", "artist": "Masaccio", "artist_folder": "MASACCIO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Chiesa di Santa Maria Novella, Firenze", "type": "affresco", "description": "Trinità con la Vergine e San Giovanni. Primo esempio di prospettiva lineare in pittura, crea illusione di profondità.", "image": "ARTWORKS_1400_1800/MASACCIO/MASACCIO__trinità.jpg", "artist_num": 6}, {"id": 21, "title": "Il Peccato originale", "date": "1424-1425", "artist": "Masolino da Panicale", "artist_folder": "MASOLINO_DA_PANICALE", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Chiesa di Santa Maria del Carmine, Firenze", "type": "affresco", "description": "Scena della tentazione di Adamo ed Eva nella Cappella Brancacci. Stile gotico elegante contrapposto al realismo di Masaccio.", "image": "ARTWORKS_1400_1800/MASOLINO_DA_PANICALE/MASOLINO_DA_PANICALE__il_peccato_originale.jpg", "artist_num": 7}, {"id": 22, "title": "Annunciazione", "date": "1425", "artist": "Beato Angelico", "artist_folder": "BEATO_ANGELICO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo di San Marco, Firenze", "type": "pittura", "description": "Annunciazione su tavola con prospettiva semplice e colori luminosi. Spiritualità e purezza compositiva.", "image": "ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__annunciazione.jpg", "artist_num": 8}, {"id": 23, "title": "Cristo deriso", "date": "1437-1447", "artist": "Beato Angelico", "artist_folder": "BEATO_ANGELICO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo di San Marco, Firenze", "type": "pittura", "description": "Deposizione di Cristo con fondo oro. Figure dolci e composte, profonda devozione religiosa.", "image": "ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__cristo_deriso.jpg", "artist_num": 8}, {"id": 24, "title": "Deposizione di Cristo", "date": "1430", "artist": "Beato Angelico", "artist_folder": "BEATO_ANGELICO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo di San Marco, Firenze", "type": "affresco", "description": "Cristo deriso nella cella del convento di San Marco. Semplice e toccante, per la meditazione dei frati.", "image": "ARTWORKS_1400_1800/BEATO_ANGELICO/BEATO_ANGELICO__deposizione_di_cristo.jpg", "artist_num": 8}, {"id": 25, "title": "Chiesa di San Sebastiano", "date": "1460-1470", "artist": "Leon Battista Alberti", "artist_folder": "LEON_BATTISTA_ALBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Palazzo Rucellai, Firenze", "type": "architettura", "description": "Facciata con ordine sovrapposto di lesene. Teorizzatore del rinascimento, applica i principi classici all’architettura civile.", "image": "ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__chiesa_di_san_sebastiano.jpg", "artist_num": 9}, {"id": 26, "title": "Chiesa di Sant'Andrea", "date": "1470", "artist": "Leon Battista Alberti", "artist_folder": "LEON_BATTISTA_ALBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Santa Maria Novella, Firenze", "type": "architettura", "description": "Facciata completata con volute laterali e frontone classico. Armonia geometrica ispirata all’antico.", "image": "ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__chiesa_di_sant'andrea.jpg", "artist_num": 9}, {"id": 27, "title": "Facciata di Santa Maria Novella", "date": "1460", "artist": "Leon Battista Alberti", "artist_folder": "LEON_BATTISTA_ALBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Chiesa di San Sebastiano, Mantova", "type": "architettura", "description": "Prima chiesa rinascimentale a pianta centrale a croce greca. Facciata pronao con colonne.", "image": "ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__facciata_di_santa_maria_novella.jpg", "artist_num": 9}, {"id": 28, "title": "Palazzo Rucellai", "date": "1452", "artist": "Leon Battista Alberti", "artist_folder": "LEON_BATTISTA_ALBERTI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Chiesa di Sant’Andrea, Mantova", "type": "architettura", "description": "Grande chiesa a navata unica con cappelle laterali. Volta a botte e facciata ispirata all’arco di trionfo romano.", "image": "ARTWORKS_1400_1800/LEON_BATTISTA_ALBERTI/LEON_BATTISTA_ALBERTI__palazzo_rucellai.jpg", "artist_num": 9}, {"id": 29, "title": "Battaglia di San Romano", "date": "1438", "artist": "Paolo Uccello", "artist_folder": "PAOLO_UCCELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Cattedrale di Santa Maria del Fiore, Firenze", "type": "affresco", "description": "Monumento equestre a Giovanni Acuto. Monocromo che imita la scultura, con studi prospettici avanzati.", "image": "ARTWORKS_1400_1800/PAOLO_UCCELLO/PAOLO_UCCELLO__battaglia_di_san_romano.jpg", "artist_num": 10}, {"id": 30, "title": "Monumento a Giovanni Acuto", "date": "1436", "artist": "Paolo Uccello", "artist_folder": "PAOLO_UCCELLO", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Battaglia tra fiorentini e senesi. Primo studio della prospettiva e del movimento in battaglia.", "image": "ARTWORKS_1400_1800/PAOLO_UCCELLO/PAOLO_UCCELLO__monumento_a_giovanni_acuto.jpg", "artist_num": 10}, {"id": 31, "title": "Battesimo di Cristo", "date": "1443", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "National Gallery, Londra", "type": "pittura", "description": "Battesimo di Cristo con figure in primo piano e paesaggio umbro. Prospettiva geometrica e luce mattutina.", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__battesimo_di_cristo.jpg", "artist_num": 11}, {"id": 32, "title": "Dittico degli Uffizi", "date": "1472-1474", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Basilica di San Francesco, Arezzo", "type": "affresco", "description": "Ciclo con scene della Vera Croce. Capolavoro di prospettiva e narrazione simbolica.", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__dittico_degli_uffizi.jpg", "artist_num": 11}, {"id": 33, "title": "Flagellazione di Cristo", "date": "circa 1459", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria Nazionale delle Marche, Urbino", "type": "pittura", "description": "Flagellazione con architettura complessa e figure enigmatiche. Considerata «la più grande pala del mondo».", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__flagellazione_di_cristo.jpg", "artist_num": 11}, {"id": 34, "title": "La resurrezione di Cristo", "date": "1463-1465", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Museo Civico, Sansepolcro", "type": "affresco", "description": "Cristo risorto con sfondo paesaggio. Icona del primo rinascimento, figura monumentale.", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__la_resurrezione_di_cristo.jpg", "artist_num": 11}, {"id": 35, "title": "Sacra Conversazione", "date": "1472-1474", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Dittico con i ritratti di Federico da Montefeltro e Battista Sforza. Profili su sfondo paesaggio.", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__sacra_conversazione.jpg", "artist_num": 11}, {"id": 36, "title": "Storie della Croce", "date": "1452-1466", "artist": "Piero della Francesca", "artist_folder": "PIERO_DELLA_FRANCESCA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Pinacoteca di Brera, Milano", "type": "pittura", "description": "Pala d’altare con Madonna, Bambino e santi. Architettura rinascimentale e luce perlacea.", "image": "ARTWORKS_1400_1800/PIERO_DELLA_FRANCESCA/PIERO_DELLA_FRANCESCA__storie_della_croce.jpg", "artist_num": 11}, {"id": 37, "title": "La calunnia", "date": "1491-1495", "artist": "Sandro Botticelli", "artist_folder": "SANDRO_BOTTICELLI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Allegoria della Primavera con figure mitologiche in un giardino fiorito. Grazia e bellezza ideale neoplatonica.", "image": "ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__la_calunnia.jpg", "artist_num": 12}, {"id": 38, "title": "La primavera", "date": "1478", "artist": "Sandro Botticelli", "artist_folder": "SANDRO_BOTTICELLI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Venere che nasce dalla schiuma del mare su una conchiglia. Icona del Rinascimento, armonia e bellezza ideale.", "image": "ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__la_primavera.jpg", "artist_num": 12}, {"id": 39, "title": "Madonna del Magnificat", "date": "1483", "artist": "Sandro Botticelli", "artist_folder": "SANDRO_BOTTICELLI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Madonna con Bambino e angeli in tondo. Ricca decorazione e delicatezza nei volti.", "image": "ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__madonna_del_magnificat.jpg", "artist_num": 12}, {"id": 40, "title": "Nascita di Venere", "date": "1484-1485", "artist": "Sandro Botticelli", "artist_folder": "SANDRO_BOTTICELLI", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Allegoria della Calunnia ispirata a Luciano. Figure allegoriche e architettura classica.", "image": "ARTWORKS_1400_1800/SANDRO_BOTTICELLI/SANDRO_BOTTICELLI__nascita_di_venere.jpg", "artist_num": 12}, {"id": 41, "title": "Ritratto di giovane uomo", "date": "1473", "artist": "Antonello da Messina", "artist_folder": "ANTONELLO_DA_MESSINA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "National Gallery, Londra", "type": "pittura", "description": "San Gerolamo nel suo studio con luce che entra dalle finestre. Prospettiva e dettagli fiamminghi.", "image": "ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__ritratto_di_giovane_uomo.jpg", "artist_num": 13}, {"id": 42, "title": "San Gerolamo nello Studio", "date": "1475", "artist": "Antonello da Messina", "artist_folder": "ANTONELLO_DA_MESSINA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Städelsches Kunstinstitut, Francoforte", "type": "pittura", "description": "Ritratto di giovane uomo con sorriso enigmatico. Influenza fiamminga nella resa dei dettagli.", "image": "ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__san_gerolamo_nello_studio.jpg", "artist_num": 13}, {"id": 43, "title": "San Sebastiano", "date": "1478", "artist": "Antonello da Messina", "artist_folder": "ANTONELLO_DA_MESSINA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Gemäldegalerie, Dresda", "type": "pittura", "description": "San Sebastiano trafitto da frecce. Studio anatomico e paesaggio urbano sullo sfondo.", "image": "ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__san_sebastiano.jpg", "artist_num": 13}, {"id": 44, "title": "Vergine Annunciata", "date": "1475", "artist": "Antonello da Messina", "artist_folder": "ANTONELLO_DA_MESSINA", "period_id": "early-ren", "period_name": "Primo Rinascimento", "period_years": "1400–1490", "period_color": "#C8922C", "location": "Galleria Regionale, Palermo", "type": "pittura", "description": "Vergine annunciata con libro e velo. Sguardo intenso che rompe la quarta parete.", "image": "ARTWORKS_1400_1800/ANTONELLO_DA_MESSINA/ANTONELLO_DA_MESSINA__vergine_annunciata.jpg", "artist_num": 13}, {"id": 45, "title": "Camera degli sposi", "date": "1465-1474", "artist": "Andrea Mantegna", "artist_folder": "ANDREA_MANTEGNA", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "National Gallery, Londra", "type": "pittura", "description": "Cristo nell’orto con apostoli addormentati. Prospettiva dal basso e paesaggio roccioso.", "image": "ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__camera_degli_sposi.jpg", "artist_num": 14}, {"id": 46, "title": "Cristo In Pietà", "date": "", "artist": "Andrea Mantegna", "artist_folder": "ANDREA_MANTEGNA", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Basilica di San Zeno, Verona", "type": "pittura", "description": "Polittico con Madonna e santi in architettura classica. Unifica le tavole con un portico dipinto.", "image": "ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__cristo_in_pietà.jpg", "artist_num": 14}, {"id": 47, "title": "Orazione nell'Orto", "date": "1453", "artist": "Andrea Mantegna", "artist_folder": "ANDREA_MANTEGNA", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Kunsthistorisches Museum, Vienna", "type": "pittura", "description": "San Sebastiano frecciato con arco di trionfo sullo sfondo. Martirio e gloria classica.", "image": "ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__orazione_nell'orto.jpg", "artist_num": 14}, {"id": 48, "title": "Pala di San Zeno", "date": "1456-1459", "artist": "Andrea Mantegna", "artist_folder": "ANDREA_MANTEGNA", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Palazzo Ducale, Mantova", "type": "affresco", "description": "Camera picta con illusionismo prospettico. Primo esempio di di sotto in sù nella pittura.", "image": "ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__pala_di_san_zeno.jpg", "artist_num": 14}, {"id": 49, "title": "San Sebastiano", "date": "1480", "artist": "Andrea Mantegna", "artist_folder": "ANDREA_MANTEGNA", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Pinacoteca di Brera, Milano", "type": "pittura", "description": "Cristo morto con scorcio prospettico drammatico. Compianto intenso e realismo anatomico.", "image": "ARTWORKS_1400_1800/ANDREA_MANTEGNA/ANDREA_MANTEGNA__san_sebastiano.jpg", "artist_num": 14}, {"id": 50, "title": "Madonna con bambino e santi", "date": "1488", "artist": "Giovanni Bellini", "artist_folder": "GIOVANNI_BELLINI", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Chiesa di San Francesco, Montefiorentino", "type": "pittura", "description": "Pala d’altare con Incoronazione della Vergine. Colori caldi e composizione equilibrata.", "image": "ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__madonna_con_bambino_e_santi.jpg", "artist_num": 15}, {"id": 51, "title": "Pala Incoronazione", "date": "", "artist": "Giovanni Bellini", "artist_folder": "GIOVANNI_BELLINI", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Pala di San Giobbe con Madonna e santi. Luce morbida e architettura classica in trompe-l’oeil.", "image": "ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__pala_incoronazione.jpg", "artist_num": 15}, {"id": 52, "title": "Ritratto del doge Leonardo Loredan", "date": "1501", "artist": "Giovanni Bellini", "artist_folder": "GIOVANNI_BELLINI", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "National Gallery, Londra", "type": "pittura", "description": "Ritratto del doge in abiti cerimoniali. Primo grande ritratto ufficiale veneziano.", "image": "ARTWORKS_1400_1800/GIOVANNI_BELLINI/GIOVANNI_BELLINI__ritratto_del_doge_leonardo_loredan.jpg", "artist_num": 15}, {"id": 53, "title": "Consegna delle chiavi a San Pietro", "date": "1481-1483", "artist": "Pietro Perugino", "artist_folder": "PIETRO_PERUGINO", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Cappella Sistina, Città del Vaticano", "type": "affresco", "description": "Gesù consegna le chiavi a Pietro in una piazza con architettura rinascimentale e figure monumentali.", "image": "ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__consegna_delle_chiavi_a_san_pietro.jpg", "artist_num": 16}, {"id": 54, "title": "Ritratto di Francesco delle Opere", "date": "1494", "artist": "Pietro Perugino", "artist_folder": "PIETRO_PERUGINO", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Chiesa di San Sebastiano, Panicale", "type": "affresco", "description": "San Sebastiano con arco di trionfo e paesaggio umbro. Dolcezza e armonia compositiva.", "image": "ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__ritratto_di_francesco_delle_opere.jpg", "artist_num": 16}, {"id": 55, "title": "San Sebastiano", "date": "1490", "artist": "Pietro Perugino", "artist_folder": "PIETRO_PERUGINO", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Ritratto di Francesco delle Opere. Profilo tagliente e penetrante psicologia.", "image": "ARTWORKS_1400_1800/PIETRO_PERUGINO/PIETRO_PERUGINO__san_sebastiano.jpg", "artist_num": 16}, {"id": 56, "title": "Chiesa di Santa Maria presso San Satiro", "date": "1482-1486", "artist": "Donato Bramante", "artist_folder": "DONATO_BRAMANTE", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Pinacoteca di Brera, Milano", "type": "pittura", "description": "Cristo alla colonna con flagellazione. Studio prospettico e tensione drammatica.", "image": "ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__chiesa_di_santa_maria_presso_san_satiro.jpg", "artist_num": 17}, {"id": 57, "title": "Cristo alla colonna", "date": "1490", "artist": "Donato Bramante", "artist_folder": "DONATO_BRAMANTE", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Museo di Brera, Milano", "type": "incisione", "description": "Stampa con interni di chiesa e architettura prospettica. Progetto per una chiesa a pianta centrale.", "image": "ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__cristo_alla_colonna.jpg", "artist_num": 17}, {"id": 58, "title": "La nuova Basilica di San Pietro", "date": "1506-1626", "artist": "Donato Bramante", "artist_folder": "DONATO_BRAMANTE", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Chiesa di Santa Maria presso San Satiro, Milano", "type": "architettura", "description": "Finto coro in prospettiva che crea profondità illusoria. Capolavoro di illusionismo architettonico.", "image": "ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__la_nuova_basilica_di_san_pietro.jpg", "artist_num": 17}, {"id": 59, "title": "Stampa Prevedari", "date": "1481", "artist": "Donato Bramante", "artist_folder": "DONATO_BRAMANTE", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "San Pietro in Montorio, Roma", "type": "architettura", "description": "Tempietto a pianta centrale con colonnato dorico. Manifesto del classicismo rinascimentale.", "image": "ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__stampa_prevedari.jpg", "artist_num": 17}, {"id": 60, "title": "Tempietto di San Pietro in Montorio", "date": "1502", "artist": "Donato Bramante", "artist_folder": "DONATO_BRAMANTE", "period_id": "bridge", "period_name": "Verso il Rinascimento Maturo", "period_years": "1450–1520", "period_color": "#D4894A", "location": "Città del Vaticano", "type": "architettura", "description": "Progetto per la nuova Basilica di San Pietro con pianta centrale a croce greca. Fondamentale per l’urbanistica rinascimentale.", "image": "ARTWORKS_1400_1800/DONATO_BRAMANTE/DONATO_BRAMANTE__tempietto_di_san_pietro_in_montorio.jpg", "artist_num": 17}, {"id": 61, "title": "Adorazione dei Magi", "date": "1481-1482", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Annunciazione con paesaggio e prospettiva aerea. Angelo con ali ancora aperte e Vergine al leggio.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__adorazione_dei_magi.jpg", "artist_num": 18}, {"id": 62, "title": "Annunciazione", "date": "1472-1475", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Adorazione dei Magi incompiuta. Composizione piramidale con figure in movimento intorno al Bambino.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__annunciazione.jpg", "artist_num": 18}, {"id": 63, "title": "Il battesimo di Gesù", "date": "1475-1478", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Vergine delle rocce con paesaggio umido e figure in grotta. Sfumato e prospettiva aerea.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__il_battesimo_di_ges.jpg", "artist_num": 18}, {"id": 64, "title": "Il cenacolo", "date": "1495-1497", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Chiesa di Santa Maria delle Grazie, Milano", "type": "affresco", "description": "Ultima Cena con Cristo e apostoli. Prospettiva e psicologia delle reazioni. Tecnica sperimentale in precario stato.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__il_cenacolo.jpg", "artist_num": 18}, {"id": 65, "title": "La dama con l'ermellino", "date": "1488-1490", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Ritratto di Monna Lisa dal sorriso enigmatico. Sfumato e paesaggio irreale sullo sfondo.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_dama_con_l'ermellino.jpg", "artist_num": 18}, {"id": 66, "title": "La gioconda", "date": "1503", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Battesimo di Gesù con angelo. Collaborazione col Verrocchio, angelo sinistro di Leonardo.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_gioconda.jpg", "artist_num": 18}, {"id": 67, "title": "La Vergine delle rocce", "date": "1483-1486", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Museo Czartoryski, Cracovia", "type": "pittura", "description": "Ritratto di Cecilia Gallerani con un ermellino. Giro del corpo e mano elegante.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__la_vergine_delle_rocce.jpg", "artist_num": 18}, {"id": 68, "title": "Sant'Anna", "date": "1488-1490", "artist": "Leonardo da Vinci", "artist_folder": "LEONARDO_DA_VINCI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Sant’Anna con la Vergine e il Bambino. Composizione piramidale e paesaggio montuoso sullo sfondo.", "image": "ARTWORKS_1400_1800/LEONARDO_DA_VINCI/LEONARDO_DA_VINCI__sant'anna.jpg", "artist_num": 18}, {"id": 69, "title": "Deposizione", "date": "1507", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Pinacoteca di Brera, Milano", "type": "pittura", "description": "Sposalizio della Vergine con tempio sullo sfondo. Prospettiva centrale e figure armoniose.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__deposizione.jpg", "artist_num": 19}, {"id": 70, "title": "Incendio di Borgo", "date": "1514", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Kunsthistorisches Museum, Vienna", "type": "pittura", "description": "Madonna del prato con Gesù e San Giovannino. Dolcezza e equilibrio compositivo.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__incendio_di_borgo.jpg", "artist_num": 19}, {"id": 71, "title": "La scuola d'Atene", "date": "1509-1510", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria Borghese, Roma", "type": "pittura", "description": "Deposizione di Cristo nel sepolcro. Drammaticità e pathos nelle figure.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__la_scuola_d'atene.jpg", "artist_num": 19}, {"id": 72, "title": "Lettera a Leone X", "date": "1519", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Palazzi Vaticani, Roma", "type": "affresco", "description": "Stanze affrescate con scene teologiche e filosofiche. Capolavoro del classicismo rinascimentale.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__lettera_a_leone_x.jpg", "artist_num": 19}, {"id": 73, "title": "Liberazione di San Pietro dal carcere", "date": "1513-1514", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Palazzi Vaticani, Roma", "type": "affresco", "description": "Scuola di Atene con Platone e Aristotele. Celebrazione della filosofia classica in architettura rinascimentale.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__liberazione_di_san_pietro_dal_carcere.jpg", "artist_num": 19}, {"id": 74, "title": "Lo sposalizio della Vergine", "date": "1504", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Palazzi Vaticani, Roma", "type": "affresco", "description": "Liberazione di San Pietro dal carcere. Notte e luce divina.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__lo_sposalizio_della_vergine.jpg", "artist_num": 19}, {"id": 75, "title": "Madonna del prato", "date": "1506-1508", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Palazzi Vaticani, Roma", "type": "affresco", "description": "Incendio di Borgo con figure in fuga. Retorica classica e dramma urbano.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__madonna_del_prato.jpg", "artist_num": 19}, {"id": 76, "title": "Ritratto di Leone X con due cardinali", "date": "1518", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Ritratto di Leone X con i cardinali. Intenso realismo psicologico.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__ritratto_di_leone_x_con_due_cardinali.jpg", "artist_num": 19}, {"id": 77, "title": "Stanze Vaticane", "date": "1508-1520", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Pinacoteca Vaticana, Roma", "type": "pittura", "description": "Trasfigurazione di Cristo sul monte Tabor. Estasi celeste e dramma terreno.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__stanze_vaticane.jpg", "artist_num": 19}, {"id": 78, "title": "Trasfigurazione", "date": "1518-1520", "artist": "Raffaello Sanzio", "artist_folder": "RAFFAELLO_SANZIO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Lettera a Leone X, Roma", "type": "disegno", "description": "Lettera di Raffaello a papa Leone X sulla conservazione dei monumenti antichi. Primo documento di tutela archeologica.", "image": "ARTWORKS_1400_1800/RAFFAELLO_SANZIO/RAFFAELLO_SANZIO__trasfigurazione.jpg", "artist_num": 19}, {"id": 79, "title": "Basilica di San Pietro", "date": "1506-1547", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Basilica di San Pietro, Città del Vaticano", "type": "scultura", "description": "Pietà in marmo con Vergine e Cristo morto. Unica opera firmata. Perfezione anatomica e pathos.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__basilica_di_san_pietro.jpg", "artist_num": 20}, {"id": 80, "title": "David", "date": "1501-1504", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria dell’Accademia, Firenze", "type": "scultura", "description": "David in marmo, simbolo della Repubblica fiorentina. Adolescente eroico con tensione prima della battaglia.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__david.jpg", "artist_num": 20}, {"id": 81, "title": "Giudizio Universale", "date": "1536-1541", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Tondo Doni con Sacra Famiglia. Figure monumentali e colore acceso.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__giudizio_universale.jpg", "artist_num": 20}, {"id": 82, "title": "La Piet Di San Pietro", "date": "", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Basilica di San Pietro in Vincoli, Roma", "type": "scultura", "description": "Tomba di Giulio II con Mosè dalle corna. Figure possenti e incompiute.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__la_piet_di_san_pietro.jpg", "artist_num": 20}, {"id": 83, "title": "Piazza del Campidoglio", "date": "dal 1539", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Cappella Sistina, Città del Vaticano", "type": "affresco", "description": "Volta con Storie della Genesi. Creazione di Adamo. Capolavoro assoluto della pittura occidentale.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__piazza_del_campidoglio.jpg", "artist_num": 20}, {"id": 84, "title": "Sagrestia Nuova di San Lorenzo", "date": "1519-1534", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Cappella Sistina, Città del Vaticano", "type": "affresco", "description": "Giudizio Universale sulla parete dell’altare. Figure tormentate e apocalittiche.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__sagrestia_nuova_di_san_lorenzo.jpg", "artist_num": 20}, {"id": 85, "title": "Tomba di Giulio II", "date": "1533-1544", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Basilica di San Lorenzo, Firenze", "type": "architettura", "description": "Sagrestia Nuova con tombe medicee. Cappella in pianta centrale con sculture allegoriche.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__tomba_di_giulio_ii.jpg", "artist_num": 20}, {"id": 86, "title": "Tondo Doni", "date": "1504", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Campidoglio, Roma", "type": "architettura", "description": "Piazza trapezoidale con palazzi e statua equestre di Marco Aurelio. Primo progetto urbanistico moderno.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__tondo_doni.jpg", "artist_num": 20}, {"id": 87, "title": "Volta della Cappella Sistina", "date": "1508-1512", "artist": "Michelangelo Buonarroti", "artist_folder": "MICHELANGELO_BUONARROTI", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Basilica di San Pietro, Città del Vaticano", "type": "architettura", "description": "Cupola progettata da Michelangelo. Modello per le cupole successive.", "image": "ARTWORKS_1400_1800/MICHELANGELO_BUONARROTI/MICHELANGELO_BUONARROTI__volta_della_cappella_sistina.jpg", "artist_num": 20}, {"id": 88, "title": "I tre filosofi", "date": "1504", "artist": "Giorgione da Castelfranco", "artist_folder": "GIORGIONE_DA_CASTELFRANCO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Cattedrale di Castelfranco Veneto", "type": "pittura", "description": "Pala d’altare con Madonna e santi. Paesaggio silenzioso e figure malinconiche.", "image": "ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__i_tre_filosofi.jpg", "artist_num": 21}, {"id": 89, "title": "La tempesta", "date": "1502-1503", "artist": "Giorgione da Castelfranco", "artist_folder": "GIORGIONE_DA_CASTELFRANCO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Tempesta con soldato e donna che allatta. Primo paesaggio come protagonista della scena.", "image": "ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__la_tempesta.jpg", "artist_num": 21}, {"id": 90, "title": "La Venere dormiente", "date": "1508-1510", "artist": "Giorgione da Castelfranco", "artist_folder": "GIORGIONE_DA_CASTELFRANCO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Kunsthistorisches Museum, Vienna", "type": "pittura", "description": "Tre filosofi in un paesaggio serale. Figure enigmatiche e luce calda.", "image": "ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__la_venere_dormiente.jpg", "artist_num": 21}, {"id": 91, "title": "Pala di Castelfranco", "date": "1504-1505", "artist": "Giorgione da Castelfranco", "artist_folder": "GIORGIONE_DA_CASTELFRANCO", "period_id": "high-ren", "period_name": "Rinascimento Maturo", "period_years": "1490–1520", "period_color": "#C0392B", "location": "Gemäldegalerie, Dresda", "type": "pittura", "description": "Venere dormiente in un paesaggio pastorale. Modello per la Venere di Urbino di Tiziano.", "image": "ARTWORKS_1400_1800/GIORGIONE_DA_CASTELFRANCO/GIORGIONE_DA_CASTELFRANCO__pala_di_castelfranco.jpg", "artist_num": 21}, {"id": 92, "title": "Carlo V a cavallo", "date": "1548", "artist": "Tiziano di Vecellio", "artist_folder": "TIZIANO_DI_VECELLIO", "period_id": "high-manner", "period_name": "Alto Rinascimento / Manierismo", "period_years": "1490–1576", "period_color": "#8E44AD", "location": "Basilica di Santa Maria Gloriosa dei Frari, Venezia", "type": "pittura", "description": "Assunzione della Vergine con apostoli. Colore veneto vibrante e monumentalità.", "image": "ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__carlo_v_a_cavallo.jpg", "artist_num": 22}, {"id": 93, "title": "Pala dell'Assunta", "date": "1516-1518", "artist": "Tiziano di Vecellio", "artist_folder": "TIZIANO_DI_VECELLIO", "period_id": "high-manner", "period_name": "Alto Rinascimento / Manierismo", "period_years": "1490–1576", "period_color": "#8E44AD", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Venere di Urbino distesa su un letto. Sensualità e domesticità veneziana.", "image": "ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__pala_dell'assunta.jpg", "artist_num": 22}, {"id": 94, "title": "Paolo III Farnese con i nipoti", "date": "1545-1546", "artist": "Tiziano di Vecellio", "artist_folder": "TIZIANO_DI_VECELLIO", "period_id": "high-manner", "period_name": "Alto Rinascimento / Manierismo", "period_years": "1490–1576", "period_color": "#8E44AD", "location": "Museo Nazionale di Capodimonte, Napoli", "type": "pittura", "description": "Paolo III con i nipoti. Ritratto psicologico intenso e corruzione familiare.", "image": "ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__paolo_iii_farnese_con_i_nipoti.jpg", "artist_num": 22}, {"id": 95, "title": "Pietà", "date": "1576", "artist": "Tiziano di Vecellio", "artist_folder": "TIZIANO_DI_VECELLIO", "period_id": "high-manner", "period_name": "Alto Rinascimento / Manierismo", "period_years": "1490–1576", "period_color": "#8E44AD", "location": "Museo del Prado, Madrid", "type": "pittura", "description": "Carlo V a cavallo nella battaglia di Mühleberg. Primo ritratto equestre eroico.", "image": "ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__piet.jpg", "artist_num": 22}, {"id": 96, "title": "Venere di Urbino", "date": "1538", "artist": "Tiziano di Vecellio", "artist_folder": "TIZIANO_DI_VECELLIO", "period_id": "high-manner", "period_name": "Alto Rinascimento / Manierismo", "period_years": "1490–1576", "period_color": "#8E44AD", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Pietà con figure drammatiche. Ultima opera di Tiziano, cupa e struggente.", "image": "ARTWORKS_1400_1800/TIZIANO_DI_VECELLIO/TIZIANO_DI_VECELLIO__venere_di_urbino.jpg", "artist_num": 22}, {"id": 97, "title": "Camera della Badessa", "date": "1518-1520", "artist": "Correggio", "artist_folder": "CORREGGIO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Museo di San Paolo, Parma", "type": "affresco", "description": "Camera della Badessa con putti e festoni. Illusionismo e grazia.", "image": "ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__camera_della_badessa.jpg", "artist_num": 23}, {"id": 98, "title": "Cupola del Duomo di Parma", "date": "1526-1530", "artist": "Correggio", "artist_folder": "CORREGGIO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Chiesa di San Giovanni Evangelista, Parma", "type": "affresco", "description": "Cupola con Cristo e apostoli. Prospettiva da sotto in sù, precursore del barocco.", "image": "ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__cupola_del_duomo_di_parma.jpg", "artist_num": 23}, {"id": 99, "title": "Cupola San Giovanni Evangelista", "date": "", "artist": "Correggio", "artist_folder": "CORREGGIO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Gemäldegalerie, Dresda", "type": "pittura", "description": "Notte con Natività. Luce divina irradia dal Bambino.", "image": "ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__cupola_san_giovanni_evangelista.jpg", "artist_num": 23}, {"id": 100, "title": "Danae", "date": "1530", "artist": "Correggio", "artist_folder": "CORREGGIO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Cattedrale di Parma", "type": "affresco", "description": "Assunzione della Vergine con coro di angeli. Turbinio prospettico di figure.", "image": "ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__danae.jpg", "artist_num": 23}, {"id": 101, "title": "Natività", "date": "1522-1530", "artist": "Correggio", "artist_folder": "CORREGGIO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria Borghese, Roma", "type": "pittura", "description": "Danae con pioggia d’oro. Sensualità e luce avvolgente.", "image": "ARTWORKS_1400_1800/CORREGGIO/CORREGGIO__nativit.jpg", "artist_num": 23}, {"id": 102, "title": "Madonna delle Arpie", "date": "1517", "artist": "Andrea del Sarto", "artist_folder": "ANDREA_DEL_SARTO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Sposalizio mistico di Santa Caterina. Armonia compositiva e dolcezza nei volti.", "image": "ARTWORKS_1400_1800/ANDREA_DEL_SARTO/ANDREA_DEL_SARTO__madonna_delle_arpie.jpg", "artist_num": 24}, {"id": 103, "title": "Sposalizio Santa Caterina", "date": "", "artist": "Andrea del Sarto", "artist_folder": "ANDREA_DEL_SARTO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Madonna delle Arpie su piedistallo. Figure eleganti e colore brillante.", "image": "ARTWORKS_1400_1800/ANDREA_DEL_SARTO/ANDREA_DEL_SARTO__sposalizio_santa_caterina.jpg", "artist_num": 24}, {"id": 104, "title": "Alabardiere", "date": "1530", "artist": "Pontormo", "artist_folder": "PONTORMO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Alabardiere con figura allungata. Ritratto di Francesco Guardi, stile manierista.", "image": "ARTWORKS_1400_1800/PONTORMO/PONTORMO__alabardiere.jpg", "artist_num": 25}, {"id": 105, "title": "Deposizione", "date": "1526", "artist": "Pontormo", "artist_folder": "PONTORMO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Chiesa di Santa Felicita, Firenze", "type": "pittura", "description": "Deposizione con figure contorte e colori acidi. Capolavoro del manierismo fiorentino.", "image": "ARTWORKS_1400_1800/PONTORMO/PONTORMO__deposizione.jpg", "artist_num": 25}, {"id": 106, "title": "Deposizione", "date": "1521", "artist": "Rosso Fiorentino", "artist_folder": "ROSSO_FIORENTINO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Museo di San Lorenzo, Firenze", "type": "pittura", "description": "Deposizione con figure agitate e colori irreali. Stile anticlassico e visionario.", "image": "ARTWORKS_1400_1800/ROSSO_FIORENTINO/ROSSO_FIORENTINO__deposizione.jpg", "artist_num": 26}, {"id": 107, "title": "Pietà", "date": "1535-1540", "artist": "Rosso Fiorentino", "artist_folder": "ROSSO_FIORENTINO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Pietà con Cristo morto e angeli. Pathos e cromatismo acceso.", "image": "ARTWORKS_1400_1800/ROSSO_FIORENTINO/ROSSO_FIORENTINO__piet.jpg", "artist_num": 26}, {"id": 108, "title": "Ritratto di Eleonora di Toledo con il figlio", "date": "1545", "artist": "Agnolo Bronzino", "artist_folder": "AGNOLO_BRONZINO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Ritratto ufficiale di Eleonora con il figlio Giovanni. Vestito sontuoso e fredda eleganza.", "image": "ARTWORKS_1400_1800/AGNOLO_BRONZINO/AGNOLO_BRONZINO__ritratto_di_eleonora_di_toledo_con_il_figlio.jpg", "artist_num": 27}, {"id": 109, "title": "Madonna dal collo lungo", "date": "1534-1540", "artist": "Parmigianino", "artist_folder": "PARMIGIANINO", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Madonna dal collo lungo con figure allungate. Eleganza manierista e spazio irreale.", "image": "ARTWORKS_1400_1800/PARMIGIANINO/PARMIGIANINO__madonna_dal_collo_lungo.jpg", "artist_num": 28}, {"id": 110, "title": "Perseo", "date": "1545-1554", "artist": "Benvenuto Cellini", "artist_folder": "BENVENUTO_CELLINI", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Loggia dei Lanzi, Firenze", "type": "scultura", "description": "Perseo con la testa di Medusa in bronzo. Gesto vittorioso e virtuosismo tecnico.", "image": "ARTWORKS_1400_1800/BENVENUTO_CELLINI/BENVENUTO_CELLINI__perseo.jpg", "artist_num": 29}, {"id": 111, "title": "Giudizio Universale", "date": "1572-1579", "artist": "Giorgio Vasari", "artist_folder": "GIORGIO_VASARI", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Cupola del Duomo, Firenze", "type": "affresco", "description": "Giudizio Universale sulla cupola di Brunelleschi. Figure turbinose e riforma cattolica.", "image": "ARTWORKS_1400_1800/GIORGIO_VASARI/GIORGIO_VASARI__giudizio_universale.jpg", "artist_num": 30}, {"id": 112, "title": "Gli Uffizi", "date": "dal 1560", "artist": "Giorgio Vasari", "artist_folder": "GIORGIO_VASARI", "period_id": "mannerism", "period_name": "Manierismo", "period_years": "1520–1580", "period_color": "#6C3483", "location": "Firenze", "type": "architettura", "description": "Primo edificio museale d’Europa. Uffizi come sede delle magistrature e galleria d’arte.", "image": "ARTWORKS_1400_1800/GIORGIO_VASARI/GIORGIO_VASARI__gli_uffizi.jpg", "artist_num": 30}, {"id": 113, "title": "Crocifissione", "date": "1565", "artist": "Jacopo Tintoretto", "artist_folder": "JACOPO_TINTORETTO", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Miracolo dello schiavo con San Marco. Prospettiva accelerata e luce drammatica.", "image": "ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__crocifissione.jpg", "artist_num": 31}, {"id": 114, "title": "Miracolo dello schiavo", "date": "1547-1548", "artist": "Jacopo Tintoretto", "artist_folder": "JACOPO_TINTORETTO", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Ritratto severo di Jacopo Soranzo. Profondità psicologica.", "image": "ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__miracolo_dello_schiavo.jpg", "artist_num": 31}, {"id": 115, "title": "Ritratto del procuratore Jacopo Soranzo", "date": "1550", "artist": "Jacopo Tintoretto", "artist_folder": "JACOPO_TINTORETTO", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "Scuola Grande di San Rocco, Venezia", "type": "pittura", "description": "Crocifissione monumentale con folle e croci. Dramma cosmico.", "image": "ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__ritratto_del_procuratore_jacopo_soranzo.jpg", "artist_num": 31}, {"id": 116, "title": "Ultima Cena", "date": "1592-1594", "artist": "Jacopo Tintoretto", "artist_folder": "JACOPO_TINTORETTO", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "Basilica di San Giorgio Maggiore, Venezia", "type": "pittura", "description": "Ultima Cena con angeli e luce mistica. Prospettiva diagonale e teatralità.", "image": "ARTWORKS_1400_1800/JACOPO_TINTORETTO/JACOPO_TINTORETTO__ultima_cena.jpg", "artist_num": 31}, {"id": 117, "title": "Adorazione dei Magi", "date": "1573", "artist": "Paolo Veronese", "artist_folder": "PAOLO_VERONESE", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Cena in casa di Levi, enorme tela con figure sfarzose. Processo per eresia.", "image": "ARTWORKS_1400_1800/PAOLO_VERONESE/PAOLO_VERONESE__adorazione_dei_magi.jpg", "artist_num": 32}, {"id": 118, "title": "Cena in casa di Levi", "date": "1573", "artist": "Paolo Veronese", "artist_folder": "PAOLO_VERONESE", "period_id": "venetian", "period_name": "Scuola Veneta", "period_years": "1540–1600", "period_color": "#00897B", "location": "National Gallery, Londra", "type": "pittura", "description": "Adorazione dei Magi con corteo sfarzoso. Colori brillanti e architettura classica.", "image": "ARTWORKS_1400_1800/PAOLO_VERONESE/PAOLO_VERONESE__cena_in_casa_di_levi.jpg", "artist_num": 32}, {"id": 119, "title": "Galleria di Palazzo Farnese", "date": "1600", "artist": "Annibale Carracci", "artist_folder": "ANNIBALE_CARRACCI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Galleria Colonna, Roma", "type": "pittura", "description": "Mangiafagioli con scena di genere popolare. Realismo quotidiano pre-caravaggesco.", "image": "ARTWORKS_1400_1800/ANNIBALE_CARRACCI/ANNIBALE_CARRACCI__galleria_di_palazzo_farnese.jpg", "artist_num": 33}, {"id": 120, "title": "Il mangiafagioli", "date": "1583-1584", "artist": "Annibale Carracci", "artist_folder": "ANNIBALE_CARRACCI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Palazzo Farnese, Roma", "type": "affresco", "description": "Galleria con amori degli dei. Classicismo barocco e illusionismo.", "image": "ARTWORKS_1400_1800/ANNIBALE_CARRACCI/ANNIBALE_CARRACCI__il_mangiafagioli.jpg", "artist_num": 33}, {"id": 121, "title": "Bacco", "date": "1596-1597", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Testa di Medusa su scudo. Orrore e realismo.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__bacco.jpg", "artist_num": 34}, {"id": 122, "title": "Canestra di frutta", "date": "1597-1601", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Pinacoteca Ambrosiana, Milano", "type": "pittura", "description": "Canestra di frutta con foglie appassite. Primo esempio di natura morta autonoma.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__canestra_di_frutta.jpg", "artist_num": 34}, {"id": 123, "title": "Crocifissione di San Pietro", "date": "1600-1601", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Bacco giovane con frutta e vino. Sensualità e realismo crudo.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__crocifissione_di_san_pietro.jpg", "artist_num": 34}, {"id": 124, "title": "Morte della Vergine", "date": "1605-1606", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Chiesa di San Luigi dei Francesi, Roma", "type": "pittura", "description": "Vocazione di San Matteo con luce che squarcia il buio. Chiaroscuro drammatico.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__morte_della_vergine.jpg", "artist_num": 34}, {"id": 125, "title": "Testa di Medusa", "date": "1596-1598", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Chiesa di Santa Maria del Popolo, Roma", "type": "pittura", "description": "Crocifissione di San Pietro con prospettiva dal basso. Realismo e pathos.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__testa_di_medusa.jpg", "artist_num": 34}, {"id": 126, "title": "Vocazione di San Matteo", "date": "1599-1600", "artist": "Caravaggio", "artist_folder": "CARAVAGGIO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Morte della Vergine con corpo gonfio. Scandaloso realismo, venne rifiutata.", "image": "ARTWORKS_1400_1800/CARAVAGGIO/CARAVAGGIO__vocazione_di_san_matteo.jpg", "artist_num": 34}, {"id": 127, "title": "Apollo e Dafne", "date": "1622-1625", "artist": "Gian Lorenzo Bernini", "artist_folder": "BERNINI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Galleria Borghese, Roma", "type": "scultura", "description": "Apollo e Dafne con metamorfosi in alloro. Estasi del movimento barocco.", "image": "ARTWORKS_1400_1800/BERNINI/BERNINI__apollo_e_dafne.jpg", "artist_num": 35}, {"id": 128, "title": "Baldacchino di San Pietro", "date": "1624-1633", "artist": "Gian Lorenzo Bernini", "artist_folder": "BERNINI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Chiesa di Santa Maria della Vittoria, Roma", "type": "scultura", "description": "Estasi di Santa Teresa con angelo. Teatralità barocca e luce mistica.", "image": "ARTWORKS_1400_1800/BERNINI/BERNINI__baldacchino_di_san_pietro.jpg", "artist_num": 35}, {"id": 129, "title": "Colonnato di piazza San Pietro", "date": "1657-1665", "artist": "Gian Lorenzo Bernini", "artist_folder": "BERNINI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Basilica di San Pietro, Città del Vaticano", "type": "architettura", "description": "Baldacchino con colonne salomoniche in bronzo. Fusione di architettura e scultura.", "image": "ARTWORKS_1400_1800/BERNINI/BERNINI__colonnato_di_piazza_san_pietro.jpg", "artist_num": 35}, {"id": 130, "title": "Estasi di Santa Teresa", "date": "1646-1651", "artist": "Gian Lorenzo Bernini", "artist_folder": "BERNINI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Piazza San Pietro, Città del Vaticano", "type": "architettura", "description": "Colonnato a braccia aperte. Abbraccio simbolico della Chiesa.", "image": "ARTWORKS_1400_1800/BERNINI/BERNINI__estasi_di_santa_teresa.jpg", "artist_num": 35}, {"id": 131, "title": "Ratto di Proserpina", "date": "1621-1622", "artist": "Gian Lorenzo Bernini", "artist_folder": "BERNINI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Galleria Borghese, Roma", "type": "scultura", "description": "Ratto di Proserpina con mano che affonda nella carne. Virtuosismo marmoreo.", "image": "ARTWORKS_1400_1800/BERNINI/BERNINI__ratto_di_proserpina.jpg", "artist_num": 35}, {"id": 132, "title": "Trionfo della Divina Provvidenza", "date": "1632-1639", "artist": "Pietro da Cortona", "artist_folder": "PIETRO_DA_CORTONA", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Palazzo Barberini, Roma", "type": "affresco", "description": "Trionfo della Divina Provvidenza sul soffitto. Illusionismo barocco e celebrazione papale.", "image": "ARTWORKS_1400_1800/PIETRO_DA_CORTONA/PIETRO_DA_CORTONA__trionfo_della_divina_provvidenza.jpg", "artist_num": 36}, {"id": 133, "title": "Atalanta e Ippomene", "date": "1619", "artist": "Guido Reni", "artist_folder": "GUIDO_RENI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Pinacoteca Nazionale, Bologna", "type": "pittura", "description": "Strage degli Innocenti con madri e soldati. Dramma teatrale e gesti eloquenti.", "image": "ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__atalanta_e_ippomene.jpg", "artist_num": 37}, {"id": 134, "title": "Nesso e Deianira", "date": "1621", "artist": "Guido Reni", "artist_folder": "GUIDO_RENI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Museo del Prado, Madrid", "type": "pittura", "description": "Atalanta e Ippomene con mele d’oro. Movimento e grazia classica.", "image": "ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__nesso_e_deianira.jpg", "artist_num": 37}, {"id": 135, "title": "Strage degli Innocenti", "date": "1611", "artist": "Guido Reni", "artist_folder": "GUIDO_RENI", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Nesso e Deianira con fiume. Classicismo seicentesco.", "image": "ARTWORKS_1400_1800/GUIDO_RENI/GUIDO_RENI__strage_degli_innocenti.jpg", "artist_num": 37}, {"id": 136, "title": "L'angelo appare ad Agar e Ismaele", "date": "1652", "artist": "Guercino", "artist_folder": "GUERCINO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Pinacoteca Nazionale, Bologna", "type": "pittura", "description": "Ritorno del figliol prodigo. Abbraccio commovente e luce calda.", "image": "ARTWORKS_1400_1800/GUERCINO/GUERCINO__angelo_appare_ad_agar_e_ismaele.jpg", "artist_num": 38}, {"id": 137, "title": "Annunciazione", "date": "1648", "artist": "Guercino", "artist_folder": "GUERCINO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Annunciazione con angelo in volo. Barocco emiliano.", "image": "ARTWORKS_1400_1800/GUERCINO/GUERCINO__annunciazione.jpg", "artist_num": 38}, {"id": 138, "title": "Il ritorno del figliol prodigo", "date": "1619", "artist": "Guercino", "artist_folder": "GUERCINO", "period_id": "baroque", "period_name": "Barocco", "period_years": "1580–1680", "period_color": "#2E7D32", "location": "Norton Simon Museum, Pasadena", "type": "pittura", "description": "Angelo appare ad Agar e Ismaele. Dramma desertico e pathos.", "image": "ARTWORKS_1400_1800/GUERCINO/GUERCINO__ritorno_del_figliol_prodigo.jpg", "artist_num": 38}, {"id": 139, "title": "Il Banchetto Di Cleopatra", "date": "", "artist": "Giambattista Tiepolo", "artist_folder": "GIAMBATTISTA_TIEPOLO", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "National Gallery of Victoria, Melbourne", "type": "pittura", "description": "Banchetto di Antonio e Cleopatra. Lusso e teatralità settecentesca.", "image": "ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__il_banchetto_di_cleopatra.jpg", "artist_num": 39}, {"id": 140, "title": "Il sacrificio di Ifigenia", "date": "1757", "artist": "Giambattista Tiepolo", "artist_folder": "GIAMBATTISTA_TIEPOLO", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Residenza di Würzburg", "type": "affresco", "description": "Affresco sulla volta della scalinata. Capolavoro del rococò europeo.", "image": "ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__il_sacrificio_di_ifigenia.jpg", "artist_num": 39}, {"id": 141, "title": "Residenza Di Wuerzburg", "date": "", "artist": "Giambattista Tiepolo", "artist_folder": "GIAMBATTISTA_TIEPOLO", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Sacrificio di Ifigenia con tempesta. Dramma barocco e cielo tempestoso.", "image": "ARTWORKS_1400_1800/GIAMBATTISTA_TIEPOLO/GIAMBATTISTA_TIEPOLO__residenza_di_wuerzburg.jpg", "artist_num": 39}, {"id": 142, "title": "Lezione di danza", "date": "1741", "artist": "Pietro Longhi", "artist_folder": "PIETRO_LONGHI", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Pinacoteca di Brera, Milano", "type": "pittura", "description": "Lezione di danza in interni veneziani. Vita quotidiana settecentesca.", "image": "ARTWORKS_1400_1800/PIETRO_LONGHI/PIETRO_LONGHI__lezione_di_danza.jpg", "artist_num": 40}, {"id": 143, "title": "Lo speziale", "date": "1752", "artist": "Pietro Longhi", "artist_folder": "PIETRO_LONGHI", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Farmacia con cliente e speziale. Scena di genere veneziana.", "image": "ARTWORKS_1400_1800/PIETRO_LONGHI/PIETRO_LONGHI__lo_speziale.jpg", "artist_num": 40}, {"id": 144, "title": "Eton College", "date": "1754", "artist": "Antonio Canaletto", "artist_folder": "ANTONIO_CANALETTO", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Galleria degli Uffizi, Firenze", "type": "pittura", "description": "Canal Grande verso est con cupola della Salute. Prospettiva e luce veneziana.", "image": "ARTWORKS_1400_1800/ANTONIO_CANALETTO/ANTONIO_CANALETTO__eton_college.jpg", "artist_num": 41}, {"id": 145, "title": "Il Canal Grande verso Est", "date": "1727", "artist": "Antonio Canaletto", "artist_folder": "ANTONIO_CANALETTO", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "National Gallery, Londra", "type": "pittura", "description": "Eton College con prato. Vedutismo inglese di Canaletto.", "image": "ARTWORKS_1400_1800/ANTONIO_CANALETTO/ANTONIO_CANALETTO__il_canal_grande_verso_est.jpg", "artist_num": 41}, {"id": 146, "title": "Laguna vista da Murano", "date": "1780-1790", "artist": "Francesco Guardi", "artist_folder": "FRANCESCO_GUARDI", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Molo con Libreria e chiesa della Salute. Veduta veneziana atmosferica.", "image": "ARTWORKS_1400_1800/FRANCESCO_GUARDI/FRANCESCO_GUARDI__laguna_vista_da_murano.jpg", "artist_num": 42}, {"id": 147, "title": "Molo Con La Libreria Verso La Salute", "date": "", "artist": "Francesco Guardi", "artist_folder": "FRANCESCO_GUARDI", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Gallerie dell’Accademia, Venezia", "type": "pittura", "description": "Laguna vista da Murano. Pittoresco e atmosfera lagunare.", "image": "ARTWORKS_1400_1800/FRANCESCO_GUARDI/FRANCESCO_GUARDI__molo_con_la_libreria_verso_la_salute.jpg", "artist_num": 42}, {"id": 148, "title": "Santa Maria del Priorato", "date": "dal 1764", "artist": "Giovanni Battista Piranesi", "artist_folder": "GIOVANNI_BATTISTA_PIRANESI", "period_id": "roccoco", "period_name": "Rococò e Settecento", "period_years": "1700–1780", "period_color": "#1E6B9E", "location": "Piazza dei Cavalieri di Malta, Roma", "type": "architettura", "description": "Chiesa priorale con obelisco e stele. Invenzione architettonica neoclassica.", "image": "ARTWORKS_1400_1800/GIOVANNI_BATTISTA_PIRANESI/GIOVANNI_BATTISTA_PIRANESI__santa_maria_del_priorato.jpg", "artist_num": 43}, {"id": 149, "title": "L Incubo", "date": "", "artist": "Johann Heinrich Füssli", "artist_folder": "JOHANN_HEINRICH_FUSSLI", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Detroit Institute of Arts", "type": "pittura", "description": "Incubo con donna addormentata e demone. Simbolismo onirico preromantico.", "image": "ARTWORKS_1400_1800/JOHANN_HEINRICH_FUSSLI/JOHANN_HEINRICH_FUSSLI__l_incubo.jpg", "artist_num": 44}, {"id": 150, "title": "Adone e Venere", "date": "1789-1794", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Museo di Bassano del Grappa", "type": "scultura", "description": "Teseo sul Minotauro vinto. Eroico e classico.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__adone_e_venere.jpg", "artist_num": 45}, {"id": 151, "title": "Amore e Psiche", "date": "1788-1793", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Museo del Louvre, Parigi", "type": "scultura", "description": "Amore e Psiche in abbraccio. Perfezione neoclassica e tenerezza.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__amore_e_psiche.jpg", "artist_num": 45}, {"id": 152, "title": "Ebe", "date": "1800-1805", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Museo del Louvre, Parigi", "type": "scultura", "description": "Adone e Venere distesi. Morbidezza del marmo.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__ebe.jpg", "artist_num": 45}, {"id": 153, "title": "Le Grazie", "date": "1814-1817", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Museo di Bassano del Grappa", "type": "scultura", "description": "Ebe con coppa e nettare. Grazia neoclassica.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__le_grazie.jpg", "artist_num": 45}, {"id": 154, "title": "Monumento Funebre A Maria Cristina D Austria", "date": "", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Galleria Borghese, Roma", "type": "scultura", "description": "Paolina Borghese come Venere vincitrice. Erotico e ritratto ufficiale.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__monumento_funebre_a_maria_cristina_d_austria.jpg", "artist_num": 45}, {"id": 155, "title": "Paolina Borghese", "date": "1804-1808", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Ermitage, San Pietroburgo", "type": "scultura", "description": "Le Grazie abbracciate. Purezza formale e leggiadria.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__paolina_borghese.jpg", "artist_num": 45}, {"id": 156, "title": "Teseo sul Minotauro", "date": "1781-1783", "artist": "Antonio Canova", "artist_folder": "ANTONIO_CANOVA", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Augustinerkirche, Vienna", "type": "scultura", "description": "Pomposa piramide sepolcrale con figure allegoriche. Celebrazione della memoria.", "image": "ARTWORKS_1400_1800/ANTONIO_CANOVA/ANTONIO_CANOVA__teseo_sul_minotauro.jpg", "artist_num": 45}, {"id": 157, "title": "Il Giuramento degli Orazi", "date": "1784", "artist": "Jacques-Louis David", "artist_folder": "JACQUES-LOUIS_DAVID", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Museo del Louvre, Parigi", "type": "pittura", "description": "Giuramento degli Orazi con saluto romano. Stoicismo e rigore neoclassico.", "image": "ARTWORKS_1400_1800/JACQUES-LOUIS_DAVID/JACQUES-LOUIS_DAVID__il_giuramento_degli_orazi.jpg", "artist_num": 46}, {"id": 158, "title": "La morte di Marat", "date": "1793", "artist": "Jacques-Louis David", "artist_folder": "JACQUES-LOUIS_DAVID", "period_id": "neoclass", "period_name": "Neoclassicismo", "period_years": "1770–1800", "period_color": "#5D6D7E", "location": "Musei Reali di Belle Arti, Bruxelles", "type": "pittura", "description": "Marat assassinato nella vasca. Icona della Rivoluzione francese.", "image": "ARTWORKS_1400_1800/JACQUES-LOUIS_DAVID/JACQUES-LOUIS_DAVID__la_morte_di_marat.jpg", "artist_num": 46}];
+
+var PERIODS_DATA = [{"id": "early-ren", "name": "Primo Rinascimento", "years": "1400–1490", "color": "#C8922C", "count": 45}, {"id": "bridge", "name": "Verso il Rinascimento Maturo", "years": "1450–1520", "color": "#D4894A", "count": 16}, {"id": "high-ren", "name": "Rinascimento Maturo", "years": "1490–1520", "color": "#C0392B", "count": 31}, {"id": "high-manner", "name": "Alto Rinascimento / Manierismo", "years": "1490–1576", "color": "#8E44AD", "count": 5}, {"id": "mannerism", "name": "Manierismo", "years": "1520–1580", "color": "#6C3483", "count": 16}, {"id": "venetian", "name": "Scuola Veneta", "years": "1540–1600", "color": "#00897B", "count": 6}, {"id": "baroque", "name": "Barocco", "years": "1580–1680", "color": "#2E7D32", "count": 20}, {"id": "roccoco", "name": "Rococò e Settecento", "years": "1700–1780", "color": "#1E6B9E", "count": 10}, {"id": "neoclass", "name": "Neoclassicismo", "years": "1770–1800", "color": "#5D6D7E", "count": 10}];
+
+// NAVIGATION
+function switchView(name) {
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.getElementById(name+'-view').classList.add('active');
+  document.querySelectorAll('.tlinks button').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('btn-'+name).classList.add('active');
+  if(name==='game') renderLevels();
+}
+
+function ts(h) {
+  var c = h.nextElementSibling, v = h.querySelector('.chev'), cl = c.classList.contains('closed');
+  if(cl) { c.classList.remove('closed'); v.classList.remove('closed'); v.classList.add('open'); h.setAttribute('aria-expanded','true'); }
+  else { c.classList.add('closed'); v.classList.remove('open'); v.classList.add('closed'); h.setAttribute('aria-expanded','false'); }
+}
+
+// GAME STATE
+var G = { level: null, cards: [], index: 0, correct: 0, wrong: [], flipped: false };
+
+function getProgress(pid) {
+  try { var p = JSON.parse(localStorage.getItem('arte_progress')||'{}'); return p[pid]||0; } catch(e) { return 0; }
+}
+function setProgress(pid, pct) {
+  try { var p = JSON.parse(localStorage.getItem('arte_progress')||'{}'); p[pid]=pct; localStorage.setItem('arte_progress',JSON.stringify(p)); } catch(e) {}
+}
+
+function renderLevels() {
+  var el = document.getElementById('game-levels');
+  var html = '';
+  for(var i=0;i<PERIODS_DATA.length;i++) {
+    var p = PERIODS_DATA[i];
+    var prog = getProgress(p.id);
+    var badge = '';
+    if(prog >= 100) badge = '<span class="gs-badge" style="color:#fff;background:var(--pc)">&#10003; Completato</span>';
+    else if(prog > 0) badge = '<span class="gs-badge">'+Math.round(prog)+'%</span>';
+    html += '<div class="game-section" style="--pc:'+p.color+'">'+
+      '<div class="section-header" onclick="ts(this)" role="button" tabindex="0" aria-expanded="true">'+
+        '<span class="pdot"></span>'+
+        '<span class="pname">'+p.name+'</span>'+
+        '<span class="pyears">'+p.years+'</span>'+
+        '<span class="pcount">'+p.count+' opere '+badge+'</span>'+
+        '<span class="chev open">&#9660;</span>'+
+      '</div>'+
+      '<div class="section-content">'+
+        '<div class="section-inner">'+
+          '<div class="game-section-actions">'+
+            '<button class="btn-start-level" onclick="event.stopPropagation();startLevel(\''+p.id+'\')" style="--btn-c:'+p.color+'">'+
+              (prog > 0 ? 'Continua &rarr;' : 'Inizia &rarr;')+
+            '</button>'+
+            (prog > 0 && prog < 100 ? '<span class="gs-progress">'+Math.round(prog)+'% completato</span>' : '')+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }
+  el.innerHTML = html;
+}
+
+function startLevel(pid) {
+  G.level = pid;
+  var pdata = null;
+  for(var i=0;i<PERIODS_DATA.length;i++) { if(PERIODS_DATA[i].id===pid) { pdata=PERIODS_DATA[i]; break; } }
+  G.cards = [];
+  for(var i=0;i<ARTWORKS.length;i++) { if(ARTWORKS[i].period_id===pid) G.cards.push(ARTWORKS[i]); }
+  // Shuffle
+  for(var i=G.cards.length-1;i>0;i--) { var j=Math.floor(Math.random()*(i+1)); var t=G.cards[i]; G.cards[i]=G.cards[j]; G.cards[j]=t; }
+  G.index = 0; G.correct = 0; G.wrong = []; G.flipped = false;
+
+  document.getElementById('game-hero-select').style.display = 'none';
+  document.getElementById('game-levels').style.display = 'none';
+  document.getElementById('game-play').style.display = 'block';
+  document.getElementById('game-results').style.display = 'none';
+  document.getElementById('game-level-title').textContent = pdata.name;
+  showCard();
+}
+
+function backToLevels() {
+  document.getElementById('game-hero-select').style.display = 'block';
+  document.getElementById('game-levels').style.display = 'grid';
+  document.getElementById('game-play').style.display = 'none';
+  document.getElementById('game-results').style.display = 'none';
+  renderLevels();
+}
+
+function showCard() {
+  if(G.index >= G.cards.length) {
+    if(G.wrong.length === 0) { showResults(); return; }
+    G.cards = G.wrong.slice();
+    for(var i=G.cards.length-1;i>0;i--) { var j=Math.floor(Math.random()*(i+1)); var t=G.cards[i]; G.cards[i]=G.cards[j]; G.cards[j]=t; }
+    G.index = 0; G.wrong = [];
+  }
+  var card = G.cards[G.index];
+  var totalCards = 0;
+  for(var i=0;i<ARTWORKS.length;i++) { if(ARTWORKS[i].period_id===G.level) totalCards++; }
+  document.getElementById('game-progress-text').textContent = G.correct + ' / ' + totalCards + ' conosciute';
+  var pct = Math.min(100, (G.correct / totalCards) * 100);
+  document.getElementById('game-progress-bar').style.width = pct + '%';
+  document.getElementById('game-counter').textContent = 'Carta ' + (G.index+1) + ' di ' + G.cards.length;
+  document.getElementById('flip-inner').classList.remove('flipped');
+  G.flipped = false;
+  // Reset to min-height while image loads
+  document.getElementById('flip-inner').style.height = '';
+  document.getElementById('card-img').innerHTML = '<img src="'+card.image+'" alt="'+card.title+'">';
+  // Preload and adapt card height to image aspect ratio
+  var img = new Image();
+  img.onload = function() {
+    var wrap = document.getElementById('flip-wrap');
+    var w = wrap.offsetWidth;
+    if(w < 100) w = 400;
+    var ar = img.naturalWidth / img.naturalHeight;
+    var h = Math.min(Math.max(w / ar, 260), Math.min(600, window.innerHeight * 0.7));
+    document.getElementById('flip-inner').style.height = Math.round(h) + 'px';
+  };
+  img.onerror = function() {
+    document.getElementById('flip-inner').style.height = '320px';
+  };
+  img.src = card.image;
+  document.getElementById('fb-period').textContent = card.period_name;
+  document.getElementById('fb-period').style.color = card.period_color;
+  document.getElementById('fb-title').textContent = card.title;
+  document.getElementById('fb-artist').textContent = card.artist;
+  document.getElementById('fb-date').textContent = card.date || '';
+  var desc = card.description ? '<strong>Descrizione:</strong> '+card.description : '';
+  var typ = card.type ? '<strong>Tipo:</strong> '+card.type : '';
+  document.getElementById('fb-detail').innerHTML = typ + (typ&&desc?'<br>':'') + desc;
+  document.getElementById('fb-loc').innerHTML = card.location ? '&nbsp;&nbsp;'+card.location : '';
+  document.getElementById('game-actions').style.opacity = '0.3';
+  document.getElementById('game-actions').style.pointerEvents = 'none';
+}
+
+function flipCard() {
+  if(G.flipped) return;
+  document.getElementById('flip-inner').classList.add('flipped');
+  G.flipped = true;
+  document.getElementById('game-actions').style.opacity = '1';
+  document.getElementById('game-actions').style.pointerEvents = 'auto';
+}
+
+function answerCard(knew) {
+  if(!G.flipped) return;
+  var card = G.cards[G.index];
+  if(knew) { G.correct++; }
+  else { G.wrong.push(card); }
+  G.index++;
+  showCard();
+}
+
+function showResults() {
+  document.getElementById('game-play').style.display = 'none';
+  document.getElementById('game-results').style.display = 'block';
+  var total = 0;
+  for(var i=0;i<ARTWORKS.length;i++) { if(ARTWORKS[i].period_id===G.level) total++; }
+  var pct = total > 0 ? Math.round((G.correct/total)*100) : 0;
+  setProgress(G.level, pct);
+  document.getElementById('res-correct').textContent = G.correct;
+  document.getElementById('res-total').textContent = total;
+  document.getElementById('res-pct').textContent = pct + '%';
+  var msg = pct >= 80 ? 'Ottimo lavoro! Conosci bene questo periodo.' : pct >= 50 ? 'Buono! Ancora qualche opera da ripassare.' : 'Continua a studiare, ripassa le opere che non ricordi.';
+  document.getElementById('results-sub').textContent = msg;
+}
+
+function retryLevel() {
+  document.getElementById('game-results').style.display = 'none';
+  startLevel(G.level);
+}
+
+renderLevels();
+</script>
+</body>
+</html>
